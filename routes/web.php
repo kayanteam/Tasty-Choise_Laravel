@@ -1,7 +1,11 @@
 <?php
 
+use App\Http\Controllers\Admin\AdsController;
+use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\MessageController;
+use App\Http\Controllers\Admin\ProductTypeController;
 use App\Http\Controllers\Admin\ResturantController;
+use App\Http\Controllers\Admin\SubscriptionController;
 use App\Http\Controllers\Admin\UsersController;
 use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
@@ -39,11 +43,23 @@ Route::prefix('admin')->middleware(['auth:admin'])->group(function () {
      Route::get('Restaurants/changeStatus', [ResturantController::class, 'changeStatus'])->name('resturant.status');
     Route::resource('Restaurants', ResturantController::class);
 
-    Route::get('Restaurants/edit_services/{id}', [ResturantController::class, 'editServices'])->name('Restaurants.edit-services');
-    Route::put('Restaurants/update_services/{id}', [ResturantController::class, 'updateServices'])->name('Restaurants.update-services');
 
     Route::resource('Restaurants', ResturantController::class);
     Route::post('Restaurants/status', [ResturantController::class, 'updateStatus'])->name('Restaurants.status');
+
+    Route::resource('ads', AdsController::class);
+    Route::post('ads/status', [AdsController::class, 'updateStatus'])->name('ads.status');
+
+    Route::resource('category', CategoryController::class);
+    Route::post('category/status', [CategoryController::class, 'updateStatus'])->name('category.status');
+
+    Route::resource('productType', ProductTypeController::class);
+    Route::post('productType/status', [ProductTypeController::class, 'updateStatus'])->name('productType.status');
+
+    Route::resource('subscription', SubscriptionController::class);
+    Route::post('subscription/status', [SubscriptionController::class, 'updateStatus'])->name('subscription.status');
+
+
 
 });
 

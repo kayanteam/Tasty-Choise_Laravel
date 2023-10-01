@@ -12,13 +12,13 @@
                     <div class="page-title d-flex flex-column justify-content-center flex-wrap me-3">
                         <!--begin::Title-->
                         <h1 class="page-heading d-flex text-dark fw-bold fs-3 flex-column justify-content-center my-0">
-                            صنف </h1>
+                            {{ __('dashboard.add_new_category') }}</h1>
                         <!--end::Title-->
                         <!--begin::Breadcrumb-->
                         <ul class="breadcrumb breadcrumb-separatorless fw-semibold fs-7 my-0 pt-1">
                             <!--begin::Item-->
                             <li class="breadcrumb-item text-muted">
-                                <a href="" class="text-muted text-hover-primary">الرئيسية</a>
+                                <a href="" class="text-muted text-hover-primary">{{ __('dashboard.mainPage') }}</a>
                             </li>
                             <!--end::Item-->
                             <!--begin::Item-->
@@ -27,7 +27,7 @@
                             </li>
                             <!--end::Item-->
                             <!--begin::Item-->
-                            <li class="breadcrumb-item text-muted">الأقسام</li>
+                            <li class="breadcrumb-item text-muted">{{ __('dashboard.type') }}</li>
                             <!--end::Item-->
                             <!--begin::Item-->
                             <li class="breadcrumb-item">
@@ -35,7 +35,7 @@
                             </li>
                             <!--end::Item-->
                             <!--begin::Item-->
-                            <li class="breadcrumb-item text-muted">تعديل قسم </li>
+                            <li class="breadcrumb-item text-muted">{{ __('dashboard.add_new_category') }}</li>
                             <!--end::Item-->
                         </ul>
                         <!--end::Breadcrumb-->
@@ -58,14 +58,12 @@
                 <div id="kt_app_content_container" class="app-container container-xxl">
 
                     @include('layouts.sessions-messages')
-                    <form id="kt_ecommerce_add_category_form" 
-                        class="form d-flex flex-column flex-lg-row"
-                        action="{{ route('categories.update' , $data->id) }}" 
-                        method="POST">
+                    <form id="kt_ecommerce_add_category_form" class="form d-flex flex-column flex-lg-row"
+                        action="{{ route('category.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
-                        @method('PUT')
-                        @include('admin.categories._form')
-                     
+                        @include('admin.category._form')
+                        <!--end::Main column-->
+
                     </form>
                 </div>
                 <!--end::Content container-->
@@ -87,10 +85,51 @@
             }
         });
     </script>
-    <script src="{{ asset('assets/js/custom/apps/ecommerce/catalog/save-category.js') }}"></script>
+    <script src="{{ asset('assets/js/custom/apps/ecommerce/catalog/save-driver.js') }}"></script>
     <script src="{{ asset('assets/js/widgets.bundle.js') }}"></script>
     <script src="{{ asset('assets/js/custom/widgets.js') }}"></script>
     <script src="{{ asset('assets/js/custom/utilities/modals/upgrade-plan.js') }}"></script>
     <script src="{{ asset('assets/js/custom/utilities/modals/create-app.js') }}"></script>
     <script src="{{ asset('assets/js/custom/utilities/modals/users-search.js') }}"></script>
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function(e) {
+            FormValidation.formValidation(
+                document.getElementById('kt_ecommerce_add_category_form'), {
+                    fields: {
+                        'name[ar]': {
+                            validators: {
+                                notEmpty: {
+                                    message: '{{ __('dashboard.name_ar_required') }}',
+                                },
+                            },
+                        },
+
+                        'name[en]': {
+                            validators: {
+                                notEmpty: {
+                                    message: '{{ __('dashboard.name_en_required') }}',
+                                },
+                            },
+                        },
+                    },
+                    plugins: {
+                        trigger: new FormValidation.plugins.Trigger(),
+                        submitButton: new FormValidation.plugins.SubmitButton(),
+                        defaultSubmit: new FormValidation.plugins.DefaultSubmit(),
+                        bootstrap: new FormValidation.plugins.Bootstrap5(),
+                    },
+                });
+        });
+    </script>
+    <script>
+        $(document).ready(function() {
+            const checkbox = $('#status_{{ $category->id }}');
+            const hiddenInput = $('input[name="status"]');
+            checkbox.on('change', function() {
+                hiddenInput.val(checkbox.is(':checked') ? 1 : 0);
+            });
+        });
+    </script>
 @endsection

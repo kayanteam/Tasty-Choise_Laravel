@@ -19,7 +19,7 @@ return new class extends Migration
             $table->text('description')->nullable();
 
             $table->boolean('has_order')->default(true);
-            
+
             $table->timestamps();
         });
     }

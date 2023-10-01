@@ -631,7 +631,9 @@ return [
     'send_general' => 'send general notification',
     'enter_title' => 'enter title',
     'enter_text' => 'enter text',
-    '' => '',
+    'productType' => 'meal Type',
+    'add_new_productType'=>'add new meal type',
+
     '' => '',
     '' => '',
     '' => '',
@@ -649,7 +651,7 @@ return [
 
 
 
-    'made_with_MRMortaja' => 'made with MRMortaja',
+
 
 
 ];

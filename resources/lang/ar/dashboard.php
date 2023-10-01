@@ -28,6 +28,7 @@ return [
     'deleted_successfully' => 'تم الحذف بنجاح',
     'options' => 'خيارات',
     'add_new_option' => 'اضافة خيار جديد',
+    'add_new_productType'=>'اضف نوع وجبة جديدة',
     'categories' => 'الخدمات',
     'add_new_category' => 'اضافة خدمة جديد',
     'images' => 'الصور',
@@ -589,6 +590,7 @@ return [
     'send_general' => 'ارسل اشعار عام',
     'text' => 'النص',
     'send' => 'ارسال',
+    'productType' => 'وع الوجبة',
     '' => '',
     '' => '',
     '' => '',
@@ -623,8 +625,6 @@ return [
     'THE_PASSWORD_DOES_NOT_MATCH' => 'كلمة المرور غير متطابقة',
     'THE_PHONE_ALREADY_TOKEN' => 'رقم الهاتف تم استخدامه بالفعل',
     'THE_EMAIL_ALREADY_TOKEN' => 'البريد الإلكتروني تم استخدامه بالفعل',
-
-    // 'made_with_MRMortaja'=>'صنعت بواسطة MRMortaja',
 
 
 
