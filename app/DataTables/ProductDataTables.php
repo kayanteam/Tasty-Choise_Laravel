@@ -44,7 +44,7 @@ class ProductDataTables extends DataTable
             })
             ->editColumn('restaurant_id', function (Product $modal) {
 
-                return $modal->restaurant_id->name;
+                return $modal->resturant->name;
             })
              ->editColumn('product_type_id', function (Product $modal) {
 
