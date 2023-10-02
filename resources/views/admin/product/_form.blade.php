@@ -140,7 +140,7 @@
                         <div class="col-lg-6">
                             <div class="form-group row">
                                 <label class="col-lg-4 col-form-label required fw-bold fs-6">
-                                    {{ __('dashboard.category') }}
+                                    {{ __('dashboard.product_type_id') }}
                                 </label>
                                 <div class="col-lg-8">
                                     <select name="product_type_id"
@@ -156,7 +156,7 @@
                                     </select>
 
                                     <div class="fv-plugins-message-container invalid-feedback"></div>
-                                    @error('category_id')
+                                    @error('product_type_id')
                                         <div class="fv-plugins-message-container invalid-feedback">{{ $message }}
                                         </div>
                                     @enderror
