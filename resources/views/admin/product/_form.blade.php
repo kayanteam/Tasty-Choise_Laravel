@@ -13,7 +13,7 @@
 
             <div class="row mb-2">
 
-                {{-- <div class="col-lg-12">
+                <div class="col-lg-12">
                     <div class="card-body text-center pt-0">
                         <!--begin::Image input-->
                         <!--begin::Image input placeholder-->
@@ -69,7 +69,7 @@
                         @enderror
                         <!--end::Description-->
                     </div>
-                </div> --}}
+                </div>
 
                 <!--begin::Col-->
                 <div class="col-lg-12">
@@ -81,12 +81,12 @@
                         <div class="col-lg-6">
                             <div class="form-group row">
                                 <label class="col-lg-4 col-form-label required fw-bold fs-6">
-                                    {{ __('dashboard.product') }}
+                                    {{ __('dashboard.name') }}
                                 </label>
                                 <div class="col-lg-8">
                                     <input autocomplete="off" type="text" name="name"
                                         class="form-control form-control-lg form-control-solid mb-3 mb-lg-0 name"
-                                        placeholder="name" value="{{ old('name', $product->name) }}">
+                                        placeholder="الاسم" value="{{ old('name', $product->name) }}">
                                     <div class="fv-plugins-message-container invalid-feedback"></div>
                                     @error('name')
                                         <div class="fv-plugins-message-container invalid-feedback">{{ $message }}
@@ -100,12 +100,12 @@
                         <div class="col-lg-6">
                             <div class="form-group row">
                                 <label class="col-lg-4 col-form-label required fw-bold fs-6">
-                                    {{ __('dashboard.product') }}
+                                    {{ __('dashboard.price') }}
                                 </label>
                                 <div class="col-lg-8">
                                     <input autocomplete="off" type="number" name="price"
                                         class="form-control form-control-lg form-control-solid mb-3 mb-lg-0 price"
-                                        placeholder="price" value="{{ old('price', $product->price) }}">
+                                        placeholder="السعر" value="{{ old('price', $product->price) }}">
                                     <div class="fv-plugins-message-container invalid-feedback"></div>
                                     @error('price')
                                         <div class="fv-plugins-message-container invalid-feedback">{{ $message }}
@@ -120,12 +120,12 @@
                         <div class="col-lg-6">
                             <div class="form-group row">
                                 <label class="col-lg-4 col-form-label required fw-bold fs-6">
-                                    {{ __('dashboard.product') }}
+                                    {{ __('dashboard.description') }}
                                 </label>
                                 <div class="col-lg-8">
                                     <input autocomplete="off" type="text" name="description"
                                         class="form-control form-control-lg form-control-solid mb-3 mb-lg-0 description"
-                                        placeholder="description"
+                                        placeholder="ادخل الوصف"
                                         value="{{ old('description', $product->description) }}">
                                     <div class="fv-plugins-message-container invalid-feedback"></div>
                                     @error('description')
@@ -145,7 +145,7 @@
                                 <div class="col-lg-8">
                                     <select name="restaurant_id"
                                         class="form-control form-control-lg form-control-solid mb-3 mb-lg-0">
-                                        <option value="">{{ __('dashboard.select_product_type') . ' ... ' }}
+                                        <option value="">{{ __('dashboard.select_resturant') . ' ... ' }}
                                         </option>
                                         @foreach ($resturants as $resturant)
                                             <option value="{{ $resturant->id }}"

@@ -23,5 +23,10 @@ class Restaurant extends Authenticatable
     {
         return $this->hasOne(Wallet::class, 'restaurant_id', 'id');
     }
-   
+
+    public function scopeActive()
+    {
+        return $this->where('status' , 1);
+    }
+
 }

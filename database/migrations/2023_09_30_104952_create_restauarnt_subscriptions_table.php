@@ -17,7 +17,7 @@ return new class extends Migration
             $table->foreignId('subscription_id')->constrained('subscriptions');
             $table->enum('status', ['active', 'expired'])->default('active');
             $table->timestamp('expired_at')->nullable();
-            
+
             $table->timestamps();
         });
     }

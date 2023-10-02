@@ -607,6 +607,19 @@ return [
     'product_type_id'=>'نوع الوجبة',
     'add_new_product'=>'اضف وجبة جديدة',
     'product'=>'المنتجات',
+    'select_product_type'=>'اختر نوع الوجبة',
+    'select_resturant'=>'اختر مطعم',
+    'product_image'=>'صورة الوجبة',
+    'edit_product'=>'تعديل المنتج',
+    'resturant_name'=>'اسم المطعم',
+    'edit_resturant_data'=>' تعديل بيانات المطعم',
+    'edit_resturant'=>' تعديل المطعم',
+    'edit_category'=>'تعديل القسم',
+    'category_image'=>'صورة القسم',
+    'from'=>'من',
+
+
+
 
 
 

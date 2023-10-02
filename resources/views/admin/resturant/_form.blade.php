@@ -84,13 +84,13 @@
                         <div class="col-lg-6">
                             <div class="form-group row">
                                 <label class="col-lg-4 col-form-label required fw-bold fs-6">
-                                    {{ __('dashboard.provider_firstname') }}
+                                    {{ __('dashboard.resturant_name') }}
                                 </label>
                                 <div class="col-lg-8">
-                                    <input autocomplete="off" type="name" name="first_name"
+                                    <input autocomplete="off" type="name" name="name"
                                         class="form-control form-control-lg form-control-solid mb-3 mb-lg-0 name"
-                                        placeholder="{{ __('dashboard.provider_firstname') }}"
-                                        value="{{ old('first_name', $Provider->first_name) }}">
+                                        placeholder="{{ __('dashboard.resturant_name') }}"
+                                        value="{{ old($Restaurant->name) }}">
                                     <div class="fv-plugins-message-container invalid-feedback"></div>
                                     @error('first_name')
                                         <div class="fv-plugins-message-container invalid-feedback">{{ $message }}
@@ -99,16 +99,16 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-6">
+                        {{-- <div class="col-lg-6">
                             <div class="form-group row">
                                 <label class="col-lg-4 col-form-label required fw-bold fs-6">
-                                    {{ __('dashboard.provider_lastname') }}
+                                    {{ __('dashboard.resturant_lastname') }}
                                 </label>
                                 <div class="col-lg-8">
                                     <input autocomplete="off" type="name" name="last_name"
                                         class="form-control form-control-lg form-control-solid mb-3 mb-lg-0 name"
-                                        placeholder="{{ __('dashboard.provider_lastname') }}"
-                                        value="{{ old('last_name', $Provider->last_name) }}">
+                                        placeholder="{{ __('dashboard.resturant_lastname') }}"
+                                        value="{{ old('last_name', $Restaurant->last_name) }}">
                                     <div class="fv-plugins-message-container invalid-feedback"></div>
                                     @error('last_name')
                                         <div class="fv-plugins-message-container invalid-feedback">{{ $message }}
@@ -117,7 +117,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
 
                     <!--end::Row-->
 
@@ -131,7 +131,7 @@
                                 <div class="col-lg-8">
                                     <input autocomplete="off" type="email" name="email"
                                         class="form-control form-control-lg form-control-solid mb-3 mb-lg-0 email"
-                                        placeholder="email" value="{{ old('email', $Provider->email) }}">
+                                        placeholder="email" value="{{ old('email', $Restaurant->email) }}">
                                     <div class="fv-plugins-message-container invalid-feedback"></div>
                                     @error('email')
                                         <div class="fv-plugins-message-container invalid-feedback">{{ $message }}
@@ -148,7 +148,7 @@
                                 <div class="col-lg-8">
                                     <input autocomplete="off" type="phone" name="phone"
                                         class="form-control form-control-lg form-control-solid mb-3 mb-lg-0 phone"
-                                        placeholder="phone" value="{{ old('phone', $Provider->phone) }}">
+                                        placeholder="phone" value="{{ old('phone', $Restaurant->phone) }}">
                                     <div class="fv-plugins-message-container invalid-feedback"></div>
                                     @error('phone')
                                         <div class="fv-plugins-message-container invalid-feedback">{{ $message }}
@@ -166,7 +166,7 @@
                         </label>
                         <div class="col-lg-4 d-flex align-items-center">
                             <div class="form-check form-check-solid form-switch fv-row">
-                                <input type="hidden" name="status" value="{{ $Provider->status }}">
+                                <input type="hidden" name="status" value="{{ $Restaurant->status }}">
                                 <input class="form-check-input w-45px h-30px" type="checkbox" id="status"
                                     name="status" value="1" checked="">
                                 <label class="form-check-label" for="allowmarketing"></label>

@@ -87,8 +87,8 @@
                                     <div class="col-lg-8">
                                         <input autocomplete="off" type="text" name="name"
                                             class="form-control form-control-lg form-control-solid mb-3 mb-lg-0 name"
-                                            placeholder="name"
-                                            value="{{ old('name.') }}">
+                                            placeholder="اسم القسم"
+                                            value="{{ old('name', $category->name) }}">
                                         <div class="fv-plugins-message-container invalid-feedback"></div>
                                         @error('name')
                                             <div class="fv-plugins-message-container invalid-feedback">{{ $message }}

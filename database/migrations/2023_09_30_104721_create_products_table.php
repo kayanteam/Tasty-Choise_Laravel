@@ -21,6 +21,7 @@ return new class extends Migration
 
             $table->foreignId('restaurant_id')->nullable()->constrained('restaurants')->onDelete('cascade');
             $table->foreignId('product_type_id')->nullable()->constrained('product_types')->onDelete('cascade');
+            $table->boolean('status')->default(true);
             $table->timestamps();
         });
     }
