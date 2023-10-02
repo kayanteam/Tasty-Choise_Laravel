@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d150066e93af09784a55b40d1b4e1895",
+    "content-hash": "95db9c8ab29bb922116a3edfa1cae1b5",
     "packages": [
         {
             "name": "brick/math",
@@ -7030,16 +7030,16 @@
         },
         {
             "name": "yajra/laravel-datatables-html",
-            "version": "v10.8.1",
+            "version": "v10.8.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/yajra/laravel-datatables-html.git",
-                "reference": "31500e3fd0ea6c18153a4122eb001abf6f04dd2a"
+                "reference": "8dbfa912a20c82f8d462b5af0e4ac328c71dd190"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yajra/laravel-datatables-html/zipball/31500e3fd0ea6c18153a4122eb001abf6f04dd2a",
-                "reference": "31500e3fd0ea6c18153a4122eb001abf6f04dd2a",
+                "url": "https://api.github.com/repos/yajra/laravel-datatables-html/zipball/8dbfa912a20c82f8d462b5af0e4ac328c71dd190",
+                "reference": "8dbfa912a20c82f8d462b5af0e4ac328c71dd190",
                 "shasum": ""
             },
             "require": {
@@ -7087,7 +7087,7 @@
             ],
             "support": {
                 "issues": "https://github.com/yajra/laravel-datatables-html/issues",
-                "source": "https://github.com/yajra/laravel-datatables-html/tree/v10.8.1"
+                "source": "https://github.com/yajra/laravel-datatables-html/tree/v10.8.2"
             },
             "funding": [
                 {
@@ -7103,7 +7103,7 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2023-08-16T05:20:32+00:00"
+            "time": "2023-10-02T07:22:14+00:00"
         },
         {
             "name": "yajra/laravel-datatables-oracle",
@@ -9636,5 +9636,5 @@
         "php": "^8.1"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.3.0"
+    "plugin-api-version": "2.2.0"
 }

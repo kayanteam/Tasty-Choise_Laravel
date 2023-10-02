@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Api\Partner;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\Api\Partners\PartnerResource;
+use App\Http\Resources\Api\Partners\PartnerResource ;
 use App\Http\Resources\Api\Users\UserResource;
 use App\Models\Restaurant;
 use App\Models\User;
@@ -24,8 +24,8 @@ class AuthController extends Controller
         $input = $request->all();
         // return $input ;
         $request->validate([
-            'phone' => [Rule::requiredIf($request->email == null) , 'exists:partners,phone', 'regex:/^([0-9\s\-\+\(\)]*)$/', 'min:8'],
-            'email'=> [Rule::requiredIf($request->phone == null) , 'email' , 'exists:partners,email'],
+            'phone' => [Rule::requiredIf($request->email == null) , 'exists:restaurants,phone', 'regex:/^([0-9\s\-\+\(\)]*)$/', 'min:8'],
+            'email'=> [Rule::requiredIf($request->phone == null) , 'email' , 'exists:restaurants,email'],
             'password' => ['required', 'string', 'min:8'],
         ]);
 
@@ -70,7 +70,7 @@ class AuthController extends Controller
         ]);
 
         // $this->SendVerificationCode($code , $request->phone);
-        $user->Wallet()->create(['userable_type' => Restaurant::class]);
+        $user->Wallet()->create();
         return Response()->Json([
             'status' => true,
             'code' => 200,
@@ -83,8 +83,8 @@ class AuthController extends Controller
     public function VerifyCode(Request $request)
     {
         $request->validate([
-            'phone' => [Rule::requiredIf($request->email == null), 'exists:partners,phone', 'regex:/^([0-9\s\-\+\(\)]*)$/', 'min:8'],
-            'email' => [Rule::requiredIf($request->phone == null), 'exists:partners,email'],
+            'phone' => [Rule::requiredIf($request->email == null), 'exists:restaurants,phone', 'regex:/^([0-9\s\-\+\(\)]*)$/', 'min:8'],
+            'email' => [Rule::requiredIf($request->phone == null), 'exists:restaurants,email'],
             'code' => ['required', 'string', 'min:4'],
         ]);
    
@@ -103,7 +103,7 @@ class AuthController extends Controller
             return $this->FailedApi('The code are incorrect.');
         }
 
-        $token = $user->createToken('MyApp', ['partner'])->accessToken;
+        $token = $user->createToken('MyApp', ['restaurant'])->accessToken;
         $user->update([
             'code' => null,
         ]);
@@ -120,8 +120,8 @@ class AuthController extends Controller
     public function ForgetPassword(Request $request)
     {
         $request->validate([
-            'phone' => [Rule::requiredIf($request->email == null), 'exists:partners,phone', 'regex:/^([0-9\s\-\+\(\)]*)$/', 'min:8'],
-            'email' => [Rule::requiredIf($request->phone == null), 'exists:partners,email'],
+            'phone' => [Rule::requiredIf($request->email == null), 'exists:restaurants,phone', 'regex:/^([0-9\s\-\+\(\)]*)$/', 'min:8'],
+            'email' => [Rule::requiredIf($request->phone == null), 'exists:restaurants,email'],
            
         ]);
 
@@ -141,7 +141,7 @@ class AuthController extends Controller
         $user->update([
             'code' =>  $code,
         ]);
-        $this->SendVerificationCode($code , $request->phone);
+        // $this->SendVerificationCode($code , $request->phone);
 
         return Response()->Json([
             'status' => true,
@@ -156,8 +156,8 @@ class AuthController extends Controller
     public function ResetPassword(Request $request)
     {
         $request->validate([
-            'phone' => [Rule::requiredIf($request->email == null), 'exists:partners,phone', 'regex:/^([0-9\s\-\+\(\)]*)$/', 'min:8'],
-            'email' => [Rule::requiredIf($request->phone == null), 'exists:partners,email'],
+            'phone' => [Rule::requiredIf($request->email == null), 'exists:restaurants,phone', 'regex:/^([0-9\s\-\+\(\)]*)$/', 'min:8'],
+            'email' => [Rule::requiredIf($request->phone == null), 'exists:restaurants,email'],
             'password' => ['required', 'string', 'min:8'],
             'password_confirmation' => ['required', 'string', 'min:8'],
         ]);

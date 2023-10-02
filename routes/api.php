@@ -66,11 +66,9 @@ Route::prefix('partners')->group(function () {
     Route::post('change-password', [AuthController::class, 'ChangePassword']);
     Route::post('resend-code', [AuthController::class, 'resendCode']);
     Route::post('social_login', [AuthController::class, 'socialLogin']);
-
     //VerifyCode
-    Route::post('verify-code', [PartnerAuthController::class, 'VerifyCode']);
-
-    Route::post('/refresh_device_token', [PartnerAuthController::class, 'RefreshDeviceToken']);
+    Route::post('verify-code', [AuthController::class, 'VerifyCode']);
+    Route::post('/refresh_device_token', [AuthController::class, 'RefreshDeviceToken']);
 
     Route::get('app', [AppController::class, 'App']);
 });

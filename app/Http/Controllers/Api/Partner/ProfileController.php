@@ -10,6 +10,7 @@ use App\Models\CarImages;
 use App\Models\Driver;
 use App\Models\Hotel;
 use App\Models\Partner;
+use App\Models\Restaurant;
 use App\Models\User;
 use App\Traits\ApiTrait;
 use App\Traits\GeneralTrait;
@@ -20,7 +21,7 @@ use Laravel\Sanctum\PersonalAccessToken;
 
 class ProfileController extends Controller
 {
-    use GeneralTrait, ApiTrait;
+    use ApiTrait;
     /**
      * Display a listing of the resource.
      *
@@ -29,10 +30,11 @@ class ProfileController extends Controller
     public function index()
     {
         //get token from header 
+        // return Auth::guard('restaurant')->user();
         $token = request()->header('Authorization');
-        $user = Partner::find(auth('partner')->id());
+        $restaurant = Restaurant::find(auth('restaurant')->id());
 
-        return $this->SuccessApi(new PartnerResource($user->setAttribute('token', str_replace('Bearer ', '', $token))), 'Profile Return Successfully');
+        return $this->SuccessApi(new PartnerResource($restaurant->setAttribute('token', str_replace('Bearer ', '', $token))), 'Profile Return Successfully');
     }
 
     /**
