@@ -65,7 +65,7 @@ class OrderDataTables extends DataTable
      * @param \App\Models\UserDataTable $model
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function query(Order $model): QueryBuilder
+    public function query(Subscription $model): QueryBuilder
     {
         $data =  $model->newQuery();
         return $data;

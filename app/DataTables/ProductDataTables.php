@@ -44,11 +44,11 @@ class ProductDataTables extends DataTable
             })
             ->editColumn('restaurant_id', function (Product $modal) {
 
-                return $modal->resturant->name;
+                return $modal->restaurant_id;
             })
              ->editColumn('product_type_id', function (Product $modal) {
 
-                return $modal->product_type_id->name;
+                return $modal->product_type_id;
             })
 
             ->editColumn('image', function (Product $modal) {
@@ -68,7 +68,7 @@ class ProductDataTables extends DataTable
      * @param \App\Models\UserDataTable $model
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function query(Product $model): QueryBuilder
+    public function query(Subscription $model): QueryBuilder
     {
         $data =  $model->newQuery();
         return $data;

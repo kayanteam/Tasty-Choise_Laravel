@@ -11,7 +11,6 @@ use App\Models\Boat_type;
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\ProductType;
-use App\Models\Restaurant;
 use App\Models\Subscription;
 use Illuminate\Http\Request;
 
@@ -36,9 +35,7 @@ class ProductController extends Controller
     {
         $product = new Product();
         $product_type = ProductType::Active()->get();
-        $resturants = Restaurant::Active()->get();
-
-        return view('admin.product.create', compact('product' , 'product_type','resturants'));
+        return view('admin.product.create', compact('product' , 'product_type'));
     }
 
     /**
@@ -81,8 +78,7 @@ class ProductController extends Controller
     {
         $product = Product::find($id);
         $product_type = ProductType::Active()->get();
-         $resturants = Restaurant::Active()->get();
-        return view('admin.product.edit', compact('product' , 'product_type','resturants'));
+        return view('admin.product.edit', compact('product' , 'product_type'));
     }
 
     /**

@@ -140,51 +140,23 @@
                         <div class="col-lg-6">
                             <div class="form-group row">
                                 <label class="col-lg-4 col-form-label required fw-bold fs-6">
-                                    {{ __('dashboard.restaurant_id') }}
-                                </label>
-                                <div class="col-lg-8">
-                                    <select name="restaurant_id"
-                                        class="form-control form-control-lg form-control-solid mb-3 mb-lg-0">
-                                        <option value="">{{ __('dashboard.select_product_type') . ' ... ' }}
-                                        </option>
-                                        @foreach ($resturants as $resturant)
-                                            <option value="{{ $resturant->id }}"
-                                                {{ old('restaurant_id', $product->restaurant_id) == $resturant->id ? 'selected' : '' }}>
-                                                {{ $resturant->name }}
-                                            </option>
-                                        @endforeach
-                                    </select>
-
-                                    <div class="fv-plugins-message-container invalid-feedback"></div>
-                                    @error('restaurant_id')
-                                        <div class="fv-plugins-message-container invalid-feedback">{{ $message }}
-                                        </div>
-                                    @enderror
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <div class="form-group row">
-                                <label class="col-lg-4 col-form-label required fw-bold fs-6">
-                                    {{ __('dashboard.product_type_id') }}
+                                    {{ __('dashboard.category') }}
                                 </label>
                                 <div class="col-lg-8">
                                     <select name="product_type_id"
                                         class="form-control form-control-lg form-control-solid mb-3 mb-lg-0">
-                                        <option value="">{{ __('dashboard.select_product_type') . ' ... ' }}
+                                        <option value="">{{ __('dashboard.select_ad_category') . ' ... ' }}
                                         </option>
                                         @foreach ($product_type as $type)
                                             <option value="{{ $type->id }}"
                                                 {{ old('product_type_id', $product->product_type_id) == $type->id ? 'selected' : '' }}>
-                                                {{ $type->name }}
+                                                {{ $product->name }}
                                             </option>
                                         @endforeach
                                     </select>
 
                                     <div class="fv-plugins-message-container invalid-feedback"></div>
-                                    @error('product_type_id')
+                                    @error('category_id')
                                         <div class="fv-plugins-message-container invalid-feedback">{{ $message }}
                                         </div>
                                     @enderror
@@ -193,6 +165,40 @@
                         </div>
                     </div>
 
+                    <div class="row fv-plugins-icon-container">
+                        <label class="col-lg-2 col-form-label required fw-bold fs-6">{{ __('dashboard.has_order') }}
+                        </label>
+                        <div class="col-lg-4 d-flex align-items-center">
+                            <div class="form-check form-check-solid form-check-custom form-switch">
+
+                                <input type="hidden" name="has_order" value="0">
+                                <input data-id="{{ $product->id }}" class="form-check-input w-45px h-30px sts-fld"
+                                    type="checkbox" id="has_order_{{ $product->id }}" name="has_order" value="1"
+                                    {{ old('has_order', $product->has_order ?? '') == 1 ? 'checked' : '' }}>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="form-group row">
+                                <label class="col-lg-4 col-form-label required fw-bold fs-6">
+                                    {{ __('dashboard.product') }}
+                                </label>
+                                <div class="col-lg-8">
+                                    <input autocomplete="off" type="number" name="duration"
+                                        class="form-control form-control-lg form-control-solid mb-3 mb-lg-0 duration"
+                                        placeholder="duration" value="{{ old('duration', $product->duration) }}">
+                                    <div class="fv-plugins-message-container invalid-feedback"></div>
+                                    @error('duration')
+                                        <div class="fv-plugins-message-container invalid-feedback">{{ $message }}
+                                        </div>
+                                    @enderror
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
                     <!--end::Row-->
                     <!--begin::Row-->
