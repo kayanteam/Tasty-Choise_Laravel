@@ -4,23 +4,25 @@ namespace App\Http\Controllers\Admin;
 
 use App\DataTables\BoatTypeDataTables;
 use App\DataTables\CategoryDataTables;
+use App\DataTables\ProductDataTables;
 use App\DataTables\SubscriptionDataTables;
 use App\Http\Controllers\Controller;
 use App\Models\Boat_type;
 use App\Models\Category;
+use App\Models\Product;
 use App\Models\Subscription;
 use Illuminate\Http\Request;
 
-class SubscriptionController extends Controller
+class ProductController extends Controller
 {
    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(SubscriptionDataTables $dataTable)
+    public function index(ProductDataTables $dataTable)
     {
-        return $dataTable->render('admin.subscription.index');
+        return $dataTable->render('admin.product.index');
     }
 
     /**
@@ -30,9 +32,9 @@ class SubscriptionController extends Controller
      */
     public function create()
     {
-        $subscription = new Subscription();
+        $product = new Product();
 
-        return view('admin.subscription.create', compact('subscription'));
+        return view('admin.product.create', compact('product'));
     }
 
     /**
@@ -50,8 +52,8 @@ class SubscriptionController extends Controller
             $image_path = $request->file('image')->store('uploads', 'public');
             $data['image'] = $image_path;
         }
-        Subscription::create($data);
-        return redirect()->route('subscription.index');
+        Product::create($data);
+        return redirect()->route('product.index');
     }
 
     /**
@@ -73,8 +75,8 @@ class SubscriptionController extends Controller
      */
     public function edit($id)
     {
-        $subscription = Subscription::find($id);
-        return view('admin.subscription.edit', compact('subscription'));
+        $product = Product::find($id);
+        return view('admin.product.edit', compact('product'));
     }
 
     /**
@@ -86,15 +88,15 @@ class SubscriptionController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $subscription = Subscription::find($id);
+        $product = Product::find($id);
         $data = $request->except('image_remove');
         if ($request->image) {
             $image_path = $request->file('image')->store('uploads', 'public');
             $data['image'] = $image_path;
         }
 
-        $subscription->update($data);
-        return redirect()->route('subscription.index');
+        $product->update($data);
+        return redirect()->route('product.index');
     }
 
     /**
@@ -105,15 +107,15 @@ class SubscriptionController extends Controller
      */
     public function destroy($id)
     {
-        $subscription = Subscription::find($id);
-        $subscription->delete();
+        $product = Product::find($id);
+        $product->delete();
         return response()->json(['status' => 'success', 'message' =>  __('dashboard.deleted_success')]);
     }
 
     public function updateStatus(Request $request): \Illuminate\Http\JsonResponse
     {
         $id = $request->get('id');
-        $info = Subscription::find($id);
+        $info = Product::find($id);
         return updateModelStatus($info);
     }
 }

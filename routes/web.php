@@ -3,9 +3,13 @@
 use App\Http\Controllers\Admin\AdsController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\MessageController;
+use App\Http\Controllers\Admin\OrderController;
+use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\ProductTypeController;
 use App\Http\Controllers\Admin\ResturantController;
+use App\Http\Controllers\Admin\ResturantSubscriptionController;
 use App\Http\Controllers\Admin\SubscriptionController;
+use App\Http\Controllers\Admin\TransactionController;
 use App\Http\Controllers\Admin\UsersController;
 use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
@@ -40,12 +44,12 @@ Route::prefix('admin')->middleware(['auth:admin'])->group(function () {
      Route::get('users/changeStatus', [UsersController::class, 'updateStatus'])->name('user.status');
     Route::resource('users', UsersController::class);
 
-     Route::get('Restaurants/changeStatus', [ResturantController::class, 'changeStatus'])->name('resturant.status');
-    Route::resource('Restaurants', ResturantController::class);
+     Route::get('resturant/changeStatus', [ResturantController::class, 'changeStatus'])->name('resturant.status');
+    Route::resource('resturant', ResturantController::class);
 
 
-    Route::resource('Restaurants', ResturantController::class);
-    Route::post('Restaurants/status', [ResturantController::class, 'updateStatus'])->name('Restaurants.status');
+    Route::resource('resturant', ResturantController::class);
+    Route::post('resturant/status', [ResturantController::class, 'updateStatus'])->name('resturant.status');
 
     Route::resource('ads', AdsController::class);
     Route::post('ads/status', [AdsController::class, 'updateStatus'])->name('ads.status');
@@ -58,6 +62,19 @@ Route::prefix('admin')->middleware(['auth:admin'])->group(function () {
 
     Route::resource('subscription', SubscriptionController::class);
     Route::post('subscription/status', [SubscriptionController::class, 'updateStatus'])->name('subscription.status');
+
+
+    Route::resource('transaction', TransactionController::class);
+    Route::post('transaction/status', [TransactionController::class, 'updateStatus'])->name('transaction.status');
+
+    Route::resource('resturantSubscription', ResturantSubscriptionController::class);
+    Route::post('resturantSubscription/status', [ResturantSubscriptionController::class, 'updateStatus'])->name('resturantSubscription.status');
+
+    Route::resource('product', ProductController::class);
+    Route::post('product/status', [ProductController::class, 'updateStatus'])->name('product.status');
+
+    Route::resource('order', OrderController::class);
+    Route::post('order/status', [OrderController::class, 'updateStatus'])->name('order.status');
 
 
 

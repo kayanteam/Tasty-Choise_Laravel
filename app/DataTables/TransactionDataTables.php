@@ -2,12 +2,12 @@
 
 namespace App\DataTables;
 
-
-use App\Models\Provider;
-use App\Models\PaymentCategory;
-use App\Models\Restaurant;
+use App\Models\Activity;
+use App\Models\Boat_type;
+use App\Models\Category;
+use App\Models\Subscription;
+use App\Models\WalletTransaction;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
-use Illuminate\Http\Request;
 use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
 use Yajra\DataTables\Html\Column;
@@ -15,8 +15,13 @@ use Yajra\DataTables\Html\Editor\Editor;
 use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
 
-class ResturantDataTables extends DataTable
+class TransactionDataTables extends DataTable
 {
+    public $lang;
+    public function __construct()
+    {
+        $this->lang = app()->getLocale();
+    }
 
     /**
      * Build DataTable class.
@@ -29,32 +34,45 @@ class ResturantDataTables extends DataTable
         return datatables()
             ->eloquent($query)
             ->addIndexColumn()
-            ->editColumn('name', function (Restaurant $modal) {
-                return $modal->name;
+            ->editColumn('type', function (WalletTransaction $modal) {
+
+                return $modal->type;
             })
-            ->editColumn('manager_name', function (Restaurant $modal) {
-                return $modal->manager_name;
+            ->editColumn('name', function (WalletTransaction $modal) {
+
+                return $modal->Wallet->resturant->name;
             })
-            ->editColumn('email', function (Restaurant $modal) {
-                return $modal->email ?? '---';
+            ->editColumn('email', function (WalletTransaction $modal) {
+
+                return $modal->Wallet->resturant->email;
             })
-            ->editColumn('phone', function (Restaurant $modal) {
-                return $modal->phone ?? '---';
+             ->editColumn('created_at', function (WalletTransaction $modal) {
+
+                return $modal->created_at;
             })
-            ->addColumn('status', function (Restaurant $model) {
-                return view('admin.resturant.parts._status', compact('model'));
+
+            // ->editColumn('name_en', function (marina $modal) {
+
+            //     return $modal->getTranslation('name', 'en');
+            // })
+            // ->editColumn('image', function (Subscription $modal) {
+            //     return view('admin.subscription.parts._icon', compact('modal'));
+            // })
+            ->addColumn('status', function (WalletTransaction $model) {
+                return view('admin.transaction.parts._status', compact('model'));
             })
-            ->addColumn('action', function (Restaurant $model) {
-                return view('admin.resturant.parts._action-menu', compact('model'));
+            ->addColumn('action', function (WalletTransaction $model) {
+                return view('admin.transaction.parts._action-menu', compact('model'));
             });
     }
+
     /**
      * Get query source of dataTable.
      *
      * @param \App\Models\UserDataTable $model
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function query(Restaurant $model): QueryBuilder
+    public function query(WalletTransaction $model): QueryBuilder
     {
         $data =  $model->newQuery();
         return $data;
@@ -68,7 +86,7 @@ class ResturantDataTables extends DataTable
     public function html(): HtmlBuilder
     {
         return $this->builder()
-            ->setTableId('ordertypesdatatables-table')
+            ->setTableId('kt_ecommerce_category_table')
             ->columns($this->getColumns())
             ->minifiedAjax()
             ->stateSave(true)
@@ -79,8 +97,8 @@ class ResturantDataTables extends DataTable
             ->languageSearch(__('dashboard.search') . ':')
             ->languageProcessing(__('dashboard.load_in_progress'))
             ->languageZeroRecords(__('dashboard.not_found_data'))
-            ->languageInfo(__('dashboard.show') ."_START_" . __('dashboard.to') ."_END_" . __('dashboard.from') . "_TOTAL_" . __('dashboard.files'))
-            ->languageInfoEmpty(__('dashboard.show'). " 0 ". __('dashboard.from'). " 0 ". __('dashboard.to') .  " 0 " . __('dashboard.files'))
+            ->languageInfo(__('dashboard.show') . "_START_" . __('dashboard.to') . "_END_" . __('dashbaord.from') . "_TOTAL_" . __('dashboard.files'))
+            ->languageInfoEmpty(__('dashboard.show') . " " . "0" . " " . __('dashboard.from') . " " . "0" . " " . __('dashboard.to') . " " . "0" . " " . __('dashboard.files'))
             ->languageInfoFiltered(" | تصفية من _MAX_ اجمالي ملفات")
             ->addTableClass('align-middle table-row-dashed fs-6 gy-5');
         // ->ExportButtons([
@@ -102,11 +120,11 @@ class ResturantDataTables extends DataTable
     {
         return [
             Column::make('DT_RowIndex')->title(__('#'))->addClass('text-center')->orderable(false)->searchable(true),
-            Column::computed('name')->title(__('dashboard.name') )->addClass('text-center'),
-            Column::computed('manager_name')->title(__('dashboard.manager_name') )->addClass('text-center'),
-            Column::computed('phone')->title(__('dashboard.phone') )->addClass('text-center'),
-            Column::computed('email')->title(__('dashboard.email') )->addClass('text-center'),
-            // Column::computed('gender')->title(__('dashboard.gender'))->addClass('text-center'),
+            Column::computed('type')->title(__('dashboard.type'))->addClass('text-center'),
+            Column::computed('name')->title(__('dashboard.name'))->addClass('text-center'),
+            Column::computed('email')->title(__('dashboard.email'))->addClass('text-center'),
+            Column::computed('created_at')->title(__('dashboard.created_at'))->addClass('text-center'),
+            // Column::computed('image')->title(__('dashboard.image'))->addClass('text-center'),
             Column::computed('status')
                 ->exportable(false)
                 ->printable(false)
@@ -129,6 +147,6 @@ class ResturantDataTables extends DataTable
      */
     protected function filename(): string
     {
-        return 'ProvidersDataTables_' . date('YmdHis');
+        return 'UserDataTables_' . date('YmdHis');
     }
 }

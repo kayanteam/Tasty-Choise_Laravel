@@ -12,7 +12,7 @@
                     <div class="page-title d-flex flex-column justify-content-center flex-wrap me-3">
                         <!--begin::Title-->
                         <h1 class="page-heading d-flex text-dark fw-bold fs-3 flex-column justify-content-center my-0">
-                            {{ __('dashboard.show_Restaurants') }}</h1>
+                            {{ __('dashboard.show_resturant') }}</h1>
                         <!--end::Title-->
                         <!--begin::Breadcrumb-->
                         <ul class="breadcrumb breadcrumb-separatorless fw-semibold fs-7 my-0 pt-1">
@@ -27,7 +27,7 @@
                             </li>
                             <!--end::Item-->
                             <!--begin::Item-->
-                            <li class="breadcrumb-item text-muted">{{ __('dashboard.Restaurants') }}</li>
+                            <li class="breadcrumb-item text-muted">{{ __('dashboard.resturant') }}</li>
                             <!--end::Item-->
                             <!--begin::Item-->
                             <li class="breadcrumb-item">
@@ -35,7 +35,7 @@
                             </li>
                             <!--end::Item-->
                             <!--begin::Item-->
-                            <li class="breadcrumb-item text-muted">{{ __('dashboard.show_Restaurants') }}</li>
+                            <li class="breadcrumb-item text-muted">{{ __('dashboard.show_resturant') }}</li>
                             <!--end::Item-->
                         </ul>
                         <!--end::Breadcrumb-->
@@ -77,7 +77,7 @@
                                         <div class="col-lg-6">
                                             <!--begin::Row-->
                                             <div class="d-flex flex-column flex-row-fluid mt-3">
-                                                <h5>{{ __('dashboard.Restaurant') }} </h5>
+                                                <h5>{{ __('dashboard.resturant') }} </h5>
                                                 <div class="d-flex flex-row flex-column-fluid">
                                                     <div class="d-flex flex-row-fluid ">
                                                         <div class="mt-3">
@@ -88,21 +88,21 @@
                                                                         <td class="text-gray-400">
                                                                             {{ __('dashboard.name') }}</td>
                                                                         <td class="text-gray-800">
-                                                                            {{ $Restaurant->first_name . ' ' . $Restaurant->last_name }}
+                                                                            {{ $resturant->name }}
                                                                         </td>
                                                                     </tr>
                                                                     <tr class="">
                                                                         <td class="text-gray-400">
                                                                             {{ __('dashboard.phone') }}</td>
                                                                         <td class="text-gray-800">
-                                                                            {{ $Restaurant->phone }}
+                                                                            {{ $resturant->phone }}
                                                                         </td>
                                                                     </tr>
                                                                     <tr class="">
                                                                         <td class="text-gray-400">
                                                                             {{ __('dashboard.email') }}</td>
                                                                         <td class="text-gray-800">
-                                                                            {{ $Restaurant->email }}
+                                                                            {{ $resturant->email }}
                                                                         </td>
                                                                     </tr>
                                                                 </tbody>
@@ -139,7 +139,7 @@
                                                                     </tr>
                                                                 </thead>
                                                                 <tbody>
-                                                                    @foreach ($Restaurant->boats as $key => $boa)
+                                                                    @foreach ($resturant->boats as $key => $boa)
                                                                         <tr>
                                                                             <th scope="row">{{ $key + 1 }}</th>
                                                                             <td>

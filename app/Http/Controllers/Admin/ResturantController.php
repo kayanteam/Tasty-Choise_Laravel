@@ -18,7 +18,7 @@ class ResturantController extends Controller
      */
     public function index(ResturantDataTables $dataTable)
     {
-        return $dataTable->render('admin.Restaurants.index');
+        return $dataTable->render('admin.resturant.index');
     }
 
     /**
@@ -28,8 +28,8 @@ class ResturantController extends Controller
      */
     public function create()
     {
-        $Restaurant = new Restaurant();
-        return view('admin.Restaurants.create', compact('Restaurant'));
+        $resturant = new Restaurant();
+        return view('admin.resturant.create', compact('resturant'));
     }
 
     /**
@@ -41,7 +41,7 @@ class ResturantController extends Controller
     public function store(Request $request)
     {
         Restaurant::create($request->except('code'));
-        return redirect()->route('Restaurants.index');
+        return redirect()->route('resturant.index');
     }
 
     /**
@@ -54,7 +54,7 @@ class ResturantController extends Controller
     {
         $Restaurant = Restaurant::find($id);
 
-        return view('admin.Restaurants.show', compact('Restaurant'));
+        return view('admin.resturant.show', compact('Restaurant'));
     }
 
     /**
@@ -66,7 +66,7 @@ class ResturantController extends Controller
     public function edit($id)
     {
         $Restaurant = Restaurant::find($id);
-        return view('admin.Restaurants.edit', compact('Restaurant'));
+        return view('admin.resturant.edit', compact('Restaurant'));
     }
 
     /**
@@ -80,7 +80,7 @@ class ResturantController extends Controller
     {
         $Restaurant = Restaurant::find($id);
         $Restaurant->update($request->except('image_remove'));
-        return redirect()->route('Restaurants.index');
+        return redirect()->route('resturant.index');
     }
 
     /**

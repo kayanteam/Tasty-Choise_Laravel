@@ -8,4 +8,19 @@ use Illuminate\Database\Eloquent\Model;
 class Wallet extends Model
 {
     use HasFactory;
+    protected $guarded = [
+
+    ];
+
+
+    public function getImagePathAttribute()
+    {
+
+            return asset('storage/'.$this->image);
+    }
+
+    public function resturant()
+    {
+        return $this->belongsTo(Restaurant::class, 'restaurant_id', 'id');
+    }
 }

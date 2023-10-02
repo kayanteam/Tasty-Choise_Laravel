@@ -10,7 +10,7 @@
                 <div class="page-title d-flex flex-column justify-content-center flex-wrap me-3">
                     <!--begin::Title-->
                     <h1 class="page-heading d-flex text-dark fw-bold fs-3 flex-column justify-content-center my-0">
-                        {{ __('dashboard.Restaurants') }}
+                        {{ __('dashboard.order') }}
                     </h1>
                     <!--end::Title-->
                     <!--begin::Breadcrumb-->
@@ -27,7 +27,7 @@
                         </li>
                         <!--end::Item-->
                         <!--begin::Item-->
-                        <li class="breadcrumb-item text-muted">{{ __('dashboard.Restaurants') }}</li>
+                        <li class="breadcrumb-item text-muted">{{ __('dashboard.order') }}</li>
                         <!--end::Item-->
                     </ul>
                     <!--end::Breadcrumb-->
@@ -64,9 +64,8 @@
                                     </svg>
                                 </span>
                                 <!--end::Svg Icon-->
-                                <input type="text" data-kt-user-table-filter="search" id="search"
-                                    class="form-control form-control-solid w-250px ps-14"
-                                    placeholder="{{ __('dashboard.search') . ' ' . __('dashboard.Restaurants') }}" />
+                                <input type="text" id="search" class="form-control form-control-solid w-250px ps-14"
+                                    placeholder="{{ __('dashboard.search') . ' ' . __('dashboard.order') }}" />
                             </div>
                             <!--end::Search-->
                         </div>
@@ -74,16 +73,15 @@
                         <!--begin::Card toolbar-->
                         <div class="card-toolbar">
                             <!--begin::Toolbar-->
-                            {{-- <div class="d-flex justify-content-end" data-kt-user-table-toolbar="base">
-                                <a href="{{ route('Restaurants.create') }}" id="showmodal" type="button"
-                                    class="btn btn-dark">{{ __('dashboard.add_new') }}</a>
-                            </div> --}}
+                            <div class="d-flex justify-content-end" data-kt-user-table-toolbar="base">
+                                <a href="{{ route('order.create') }}" id="showmodal" type="button"
+                                    class="btn btn-dark">{{ __('dashboard.add_new_order') }}</a>
+                            </div>
                             <!--end::Toolbar-->
 
                         </div>
                         <!--end::Card toolbar-->
                     </div>
-
                     <!--end::Card header-->
                     <!--begin::Card body-->
                     <div class="card-body py-4">
@@ -94,7 +92,6 @@
                 <!--end::Card-->
 
             </div>
-            <!--end::Content container-->
 
         </div>
         <!--end::Content-->
@@ -103,13 +100,11 @@
 @endsection
 @section('scripts')
     {{ $dataTable->scripts() }}
-    {{--     <script src="{{ asset('assets/js/custom/apps/user-management/users/list/table.js') }}"></script> --}}
+    {{-- <script src="{{ asset('assets/js/custom/apps/user-management/users/list/table.js') }}"></script> --}}
     <script src="{{ asset('assets/js/widgets.bundle.js') }}"></script>
     <script src="{{ asset('assets/js/custom/widgets.js') }}"></script>
-    <script src="{{ asset('assets/js/custom/apps/user-management/users/list/table.js') }}"></script>
     <!-- JavaScript Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
-    {{--    <script src="{{ asset('assets/plugins/custom/datatables/datatables.bundle.js') }}"></script> --}}
     <script>
         $(document).ready(function() {
 
@@ -128,11 +123,11 @@
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 }
             });
-            const oTable = $('#kt_ecommerce_category_table').DataTable();
+            const oTable = $('#kt_ecommerce_order_table').DataTable();
             $(document).on('click', ".del_rec_btn", function(e) {
                 e.preventDefault();
                 const id = $(this).data('id');
-                let url = "{{ route('Restaurants.destroy', ':id') }}";
+                let url = "{{ route('order.destroy', ':id') }}";
                 url = url.replace(':id', id);
 
                 Swal.fire({
@@ -160,53 +155,28 @@
         });
     </script>
 
+    {{-- update status status --}}
     <script>
-        $(document).on('keyup', '#search', function() {
-
-            let name = $(this).val();
-
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                }
-            });
-
+        $(document).on('click', '.sts-fld', function(e) {
+            //e.preventDefault();
+            const id = $(this).data('id');
+            const checkedValue = $(this).is(":checked");
             $.ajax({
-                url: "{{ route('Restaurants.index') }}",
-                type: "GET",
+                type: "POST",
+                url: "{{ route('order.status') }}",
                 data: {
-                    name: name,
+                    'id': id
                 },
                 success: function(data) {
-                    console.log(data);
-                },
-                error: function(data) {
-                    console.log(data);
-                },
+                    if (data.type === 'yes') {
+                        $(this).prop("checked", checkedValue);
+                    } else if (data.type === 'no') {
+                        $(this).prop("checked", !checkedValue);
+                    }
+                    toastr.options.positionClass = 'toast-top-left';
+                    toastr[data.status](data.message);
+                }
             });
         });
-    </script>
-
-    <script>
-        $(document).on('change', '.RestaurantSwitch', function(e) {
-            e.preventDefault();
-
-            let id = $(this).data('id');
-
-            $.ajax({
-                url: "{{ route('Restaurants.status') }}",
-                type: "post",
-                data: {
-                    id: id,
-                },
-                success: function(data) {
-                    toastr.options.positionClass = 'toast-bottom-left';
-                    toastr[data.status](data.message);
-                },
-                error: function(data) {
-                    console.log(data);
-                }
-            });
-        })
     </script>
 @endsection

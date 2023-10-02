@@ -4,7 +4,7 @@
         <!--begin::Card header-->
         <div class="card-header">
             <div class="card-title">
-                <h2>{{ __('dashboard.subscription') }}</h2>
+                <h2>{{ __('dashboard.transaction') }}</h2>
             </div>
         </div>
         <!--end::Card header-->
@@ -19,11 +19,11 @@
                         <!--begin::Image input placeholder-->
                         <style>
                             .image-input-placeholder {
-                                background-image: url('{{ 'storage/' . $subscription->image ? asset('storage/' . $subscription->image) : asset('assets/media/svg/files/pic.jpg') }}');
+                                background-image: url('{{ 'storage/' . $transaction->image ? asset('storage/' . $transaction->image) : asset('assets/media/svg/files/pic.jpg') }}');
                             }
 
                             [data-theme="dark"] .image-input-placeholder {
-                                background-image: url('{{ 'storage/' . $subscription->image ? asset('storage/' . $subscription->image) : asset('assets/media/svg/files/blank-image-dark.svg') }}');
+                                background-image: url('{{ 'storage/' . $transaction->image ? asset('storage/' . $transaction->image) : asset('assets/media/svg/files/blank-image-dark.svg') }}');
                             }
                         </style>
                         <!--end::Image input placeholder-->
@@ -60,7 +60,7 @@
                         </div>
                         <!--end::Image input-->
                         <!--begin::Description-->
-                        <div class="text-muted fs-7">{{ __('dashboard.subscription_image') }}
+                        <div class="text-muted fs-7">{{ __('dashboard.transaction_image') }}
                         </div>
                         <div class="fv-plugins-message-container invalid-feedback"></div>
                         @error('image')
@@ -81,13 +81,13 @@
                             <div class="col-lg-6">
                                 <div class="form-group row">
                                     <label class="col-lg-4 col-form-label required fw-bold fs-6">
-                                        {{ __('dashboard.subscription') }}
+                                        {{ __('dashboard.transaction') }}
                                     </label>
                                     <div class="col-lg-8">
                                         <input autocomplete="off" type="text" name="name"
                                             class="form-control form-control-lg form-control-solid mb-3 mb-lg-0 name"
                                             placeholder="name"
-                                            value="{{ old('name', $subscription->name) }}">
+                                            value="{{ old('name', $transaction->name) }}">
                                         <div class="fv-plugins-message-container invalid-feedback"></div>
                                         @error('name')
                                             <div class="fv-plugins-message-container invalid-feedback">{{ $message }}
@@ -101,13 +101,13 @@
                             <div class="col-lg-6">
                                 <div class="form-group row">
                                     <label class="col-lg-4 col-form-label required fw-bold fs-6">
-                                        {{ __('dashboard.subscription') }}
+                                        {{ __('dashboard.transaction') }}
                                     </label>
                                     <div class="col-lg-8">
                                         <input autocomplete="off" type="number" name="price"
                                             class="form-control form-control-lg form-control-solid mb-3 mb-lg-0 price"
                                             placeholder="price"
-                                            value="{{ old('price' , $subscription->price) }}">
+                                            value="{{ old('price' , $transaction->price) }}">
                                         <div class="fv-plugins-message-container invalid-feedback"></div>
                                         @error('price')
                                             <div class="fv-plugins-message-container invalid-feedback">{{ $message }}
@@ -122,13 +122,13 @@
                         <div class="col-lg-6">
                             <div class="form-group row">
                                 <label class="col-lg-4 col-form-label required fw-bold fs-6">
-                                    {{ __('dashboard.subscription') }}
+                                    {{ __('dashboard.transaction') }}
                                 </label>
                                 <div class="col-lg-8">
                                     <input autocomplete="off" type="text" name="description"
                                         class="form-control form-control-lg form-control-solid mb-3 mb-lg-0 description"
                                         placeholder="description"
-                                        value="{{ old('description' , $subscription->description) }}">
+                                        value="{{ old('description' , $transaction->description) }}">
                                     <div class="fv-plugins-message-container invalid-feedback"></div>
                                     @error('description')
                                         <div class="fv-plugins-message-container invalid-feedback">{{ $message }}
@@ -146,9 +146,9 @@
                         <div class="form-check form-check-solid form-check-custom form-switch">
 
                             <input type="hidden" name="has_order" value="0">
-                            <input data-id="{{ $subscription->id }}" class="form-check-input w-45px h-30px sts-fld"
-                                type="checkbox" id="has_order_{{ $subscription->id }}" name="has_order" value="1"
-                                {{ old('has_order', $subscription->has_order ?? '') == 1 ? 'checked' : '' }}>
+                            <input data-id="{{ $transaction->id }}" class="form-check-input w-45px h-30px sts-fld"
+                                type="checkbox" id="has_order_{{ $transaction->id }}" name="has_order" value="1"
+                                {{ old('has_order', $transaction->has_order ?? '') == 1 ? 'checked' : '' }}>
 
                         </div>
                     </div>
@@ -158,13 +158,13 @@
                     <div class="col-lg-6">
                         <div class="form-group row">
                             <label class="col-lg-4 col-form-label required fw-bold fs-6">
-                                {{ __('dashboard.subscription') }}
+                                {{ __('dashboard.transaction') }}
                             </label>
                             <div class="col-lg-8">
                                 <input autocomplete="off" type="number" name="duration"
                                     class="form-control form-control-lg form-control-solid mb-3 mb-lg-0 duration"
                                     placeholder="duration"
-                                    value="{{ old('duration' , $subscription->duration) }}">
+                                    value="{{ old('duration' , $transaction->duration) }}">
                                 <div class="fv-plugins-message-container invalid-feedback"></div>
                                 @error('duration')
                                     <div class="fv-plugins-message-container invalid-feedback">{{ $message }}
@@ -184,9 +184,9 @@
                             <div class="form-check form-check-solid form-check-custom form-switch">
 
                                 <input type="hidden" name="status" value="0">
-                                <input data-id="{{ $subscription->id }}" class="form-check-input w-45px h-30px sts-fld"
-                                    type="checkbox" id="status_{{ $subscription->id }}" name="status" value="1"
-                                    {{ old('status', $subscription->status ?? '') == 1 ? 'checked' : '' }}>
+                                <input data-id="{{ $transaction->id }}" class="form-check-input w-45px h-30px sts-fld"
+                                    type="checkbox" id="status_{{ $transaction->id }}" name="status" value="1"
+                                    {{ old('status', $transaction->status ?? '') == 1 ? 'checked' : '' }}>
 
                             </div>
                         </div>

@@ -3,7 +3,7 @@
 
 
     <div class="d-flex my-3 ms-9">
-        <a href="{{route('Restaurants.show', $model->id)}}" class="btn btn-icon btn-active-light-primary w-30px h-30px me-3" data-bs-toggle="tooltip" data-kt-customer-payment-method="show" aria-label="Show" data-bs-original-title="Show" data-kt-initialized="1">
+        <a href="{{route('resturant.show', $model->id)}}" class="btn btn-icon btn-active-light-primary w-30px h-30px me-3" data-bs-toggle="tooltip" data-kt-customer-payment-method="show" aria-label="Show" data-bs-original-title="Show" data-kt-initialized="1">
             <!--begin::Svg Icon | path: icons/duotone/Design/Eye.svg-->
             <span class="svg-icon svg-icon-3">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
@@ -15,7 +15,7 @@
         </a>
 
         <!--begin::Delete-->
-        <a href="{{route('Restaurants.destroy', $model->id)}}" class="btn btn-icon btn-active-light-primary w-30px h-30px me-3 del_rec_btn" data-bs-toggle="tooltip" data-kt-customer-payment-method="delete" aria-label="Delete" data-bs-original-title="Delete" data-kt-initialized="1" data-id="{{ $model->id }}">
+        <a href="{{route('resturant.destroy', $model->id)}}" class="btn btn-icon btn-active-light-primary w-30px h-30px me-3 del_rec_btn" data-bs-toggle="tooltip" data-kt-customer-payment-method="delete" aria-label="Delete" data-bs-original-title="Delete" data-kt-initialized="1" data-id="{{ $model->id }}">
             <!--begin::Svg Icon | path: icons/duotune/general/gen027.svg-->
             <span class="svg-icon svg-icon-3">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -29,7 +29,7 @@
         <!--end::Delete-->
 
         <!--begin::Edit Services-->
-        <a href="{{ route('Restaurants.edit', $model->id)}}" title="Edit" class="btn btn-icon btn-active-light-primary w-30px h-30px me-3">
+        <a href="{{ route('resturant.edit', $model->id)}}" title="Edit" class="btn btn-icon btn-active-light-primary w-30px h-30px me-3">
             <!--begin::Svg Icon | path: icons/duotune/general/gen027.svg-->
             <span class="svg-icon svg-icon-3">
                 <!--begin::Svg Icon | path: assets/media/icons/duotune/coding/cod001.svg-->

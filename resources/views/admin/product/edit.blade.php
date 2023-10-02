@@ -11,8 +11,7 @@
                     <!--begin::Page title-->
                     <div class="page-title d-flex flex-column justify-content-center flex-wrap me-3">
                         <!--begin::Title-->
-                        <h1 class="page-heading d-flex text-dark fw-bold fs-3 flex-column justify-content-center my-0">
-                            {{ __('dashboard.edit_Restaurant_data') }}</h1>
+                        <h1 class="page-heading d-flex text-dark fw-bold fs-3 flex-column justify-content-center my-0">{{ __('dashboard.edit_product') }}</h1>
                         <!--end::Title-->
                         <!--begin::Breadcrumb-->
                         <ul class="breadcrumb breadcrumb-separatorless fw-semibold fs-7 my-0 pt-1">
@@ -27,7 +26,7 @@
                             </li>
                             <!--end::Item-->
                             <!--begin::Item-->
-                            <li class="breadcrumb-item text-muted">{{ __('dashboard.edit_Restaurant') }}</li>
+                            <li class="breadcrumb-item text-muted">{{ __('dashboard.product') }}</li>
                             <!--end::Item-->
                             <!--begin::Item-->
                             <li class="breadcrumb-item">
@@ -35,7 +34,7 @@
                             </li>
                             <!--end::Item-->
                             <!--begin::Item-->
-                            <li class="breadcrumb-item text-muted">{{ __('dashboard.edit_Restaurant_data') }}</li>
+                            <li class="breadcrumb-item text-muted">{{ __('dashboard.edit_product') }}</li>
                             <!--end::Item-->
                         </ul>
                         <!--end::Breadcrumb-->
@@ -58,12 +57,14 @@
                 <div id="kt_app_content_container" class="app-container container-xxl">
 
                     @include('layouts.sessions-messages')
-                    <form id="kt_ecommerce_add_appconfig_form" class="form d-flex flex-column flex-lg-row"
-                        action="{{ route('Restaurants.update', $Restaurant->id) }}" method="POST"
+                    <form id="kt_ecommerce_add_appconfig_form"
+                        class="form d-flex flex-column flex-lg-row"
+                        action="{{ route('product.update'  , $product->id) }}"
+                        method="POST"
                         enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
-                        @include('admin.Restaurants._form')
+                        @include('admin.product._form')
 
                     </form>
                 </div>
@@ -86,10 +87,51 @@
             }
         });
     </script>
-    <script src="{{ asset('assets/js/custom/apps/ecommerce/catalog/save-appconfig.js') }}"></script>
+    <script src="{{ asset('assets/js/custom/apps/ecommerce/catalog/save-marinase.js') }}"></script>
     <script src="{{ asset('assets/js/widgets.bundle.js') }}"></script>
     <script src="{{ asset('assets/js/custom/widgets.js') }}"></script>
     <script src="{{ asset('assets/js/custom/utilities/modals/upgrade-plan.js') }}"></script>
     <script src="{{ asset('assets/js/custom/utilities/modals/create-app.js') }}"></script>
     <script src="{{ asset('assets/js/custom/utilities/modals/users-search.js') }}"></script>
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function(e) {
+            FormValidation.formValidation(
+                document.getElementById('kt_ecommerce_add_product_form'), {
+                    fields: {
+                        'name[ar]': {
+                            validators: {
+                                notEmpty: {
+                                    message: '{{ __('dashboard.name_ar_required') }}',
+                                },
+                            },
+                        },
+
+                        'name[en]': {
+                            validators: {
+                                notEmpty: {
+                                    message: '{{ __('dashboard.name_en_required') }}',
+                                },
+                            },
+                        },
+                    },
+                    plugins: {
+                        trigger: new FormValidation.plugins.Trigger(),
+                        submitButton: new FormValidation.plugins.SubmitButton(),
+                        defaultSubmit: new FormValidation.plugins.DefaultSubmit(),
+                        bootstrap: new FormValidation.plugins.Bootstrap5(),
+                    },
+                });
+        });
+    </script>
+    <script>
+        $(document).ready(function() {
+            const checkbox = $('#status_{{ $product->id }}');
+            const hiddenInput = $('input[name="status"]');
+            checkbox.on('change', function() {
+                hiddenInput.val(checkbox.is(':checked') ? 1 : 0);
+            });
+        });
+    </script>
 @endsection

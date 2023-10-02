@@ -30,7 +30,7 @@ return [
     'add_new_option' => 'اضافة خيار جديد',
     'add_new_productType'=>'اضف نوع وجبة جديدة',
     'categories' => 'الخدمات',
-    'add_new_category' => 'اضافة خدمة جديد',
+    'add_new_category' => 'اضافة قسم جديد',
     'images' => 'الصور',
     'add_new_photo' => 'اضافة صورة جديدة',
     'status' => 'الحالة',
@@ -590,19 +590,23 @@ return [
     'send_general' => 'ارسل اشعار عام',
     'text' => 'النص',
     'send' => 'ارسال',
-    'productType' => 'وع الوجبة',
-    '' => '',
-    '' => '',
-    '' => '',
-    '' => '',
-    '' => '',
-    '' => '',
-    '' => '',
-
-
-
-
-
+    'manager_name'=>'اسم صاحب المطعم',
+    'productType' => 'نوع الوجبة',
+    'resturant' => 'المطاعم',
+    'manager_name '=> 'اسم صاحب المطعم',
+    'transaction' => 'حركات المحفظة',
+    'subscription' => 'الباقات',
+    'duration' => 'عدد ايام الباقة',
+    'description' => 'الوصف',
+    'has_order' => 'تقبل طلبات',
+    'add_new_ubscription' => 'اضافة باقة جديدة',
+    'resturantSubscription' => 'الاشتراكات',
+    'subscription_id'=>'الباقة',
+    'restaurant_id'=>'اسم المطعم',
+    'expired_at'=>'تاريخ انتهاء الاشتراك',
+    'product_type_id'=>'نوع الوجبة',
+    'add_new_product'=>'اضف وجبة جديدة',
+    'product'=>'المنتجات',
 
 
 

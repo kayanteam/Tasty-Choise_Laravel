@@ -4,23 +4,27 @@ namespace App\Http\Controllers\Admin;
 
 use App\DataTables\BoatTypeDataTables;
 use App\DataTables\CategoryDataTables;
+use App\DataTables\OrderDataTables;
+use App\DataTables\ProductDataTables;
 use App\DataTables\SubscriptionDataTables;
 use App\Http\Controllers\Controller;
 use App\Models\Boat_type;
 use App\Models\Category;
+use App\Models\Order;
+use App\Models\Product;
 use App\Models\Subscription;
 use Illuminate\Http\Request;
 
-class SubscriptionController extends Controller
+class OrderController extends Controller
 {
    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(SubscriptionDataTables $dataTable)
+    public function index(OrderDataTables $dataTable)
     {
-        return $dataTable->render('admin.subscription.index');
+        return $dataTable->render('admin.order.index');
     }
 
     /**
@@ -30,9 +34,9 @@ class SubscriptionController extends Controller
      */
     public function create()
     {
-        $subscription = new Subscription();
+        $order = new Order();
 
-        return view('admin.subscription.create', compact('subscription'));
+        return view('admin.order.create', compact('order'));
     }
 
     /**
@@ -50,8 +54,8 @@ class SubscriptionController extends Controller
             $image_path = $request->file('image')->store('uploads', 'public');
             $data['image'] = $image_path;
         }
-        Subscription::create($data);
-        return redirect()->route('subscription.index');
+        Order::create($data);
+        return redirect()->route('order.index');
     }
 
     /**
@@ -73,8 +77,8 @@ class SubscriptionController extends Controller
      */
     public function edit($id)
     {
-        $subscription = Subscription::find($id);
-        return view('admin.subscription.edit', compact('subscription'));
+        $order = Order::find($id);
+        return view('admin.order.edit', compact('order'));
     }
 
     /**
@@ -86,15 +90,15 @@ class SubscriptionController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $subscription = Subscription::find($id);
+        $order = Order::find($id);
         $data = $request->except('image_remove');
         if ($request->image) {
             $image_path = $request->file('image')->store('uploads', 'public');
             $data['image'] = $image_path;
         }
 
-        $subscription->update($data);
-        return redirect()->route('subscription.index');
+        $order->update($data);
+        return redirect()->route('order.index');
     }
 
     /**
@@ -105,15 +109,15 @@ class SubscriptionController extends Controller
      */
     public function destroy($id)
     {
-        $subscription = Subscription::find($id);
-        $subscription->delete();
+        $order = Order::find($id);
+        $order->delete();
         return response()->json(['status' => 'success', 'message' =>  __('dashboard.deleted_success')]);
     }
 
     public function updateStatus(Request $request): \Illuminate\Http\JsonResponse
     {
         $id = $request->get('id');
-        $info = Subscription::find($id);
+        $info = Order::find($id);
         return updateModelStatus($info);
     }
 }

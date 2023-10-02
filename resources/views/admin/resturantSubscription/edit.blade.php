@@ -11,13 +11,13 @@
                     <!--begin::Page title-->
                     <div class="page-title d-flex flex-column justify-content-center flex-wrap me-3">
                         <!--begin::Title-->
-                        <h1 class="page-heading d-flex text-dark fw-bold fs-3 flex-column justify-content-center my-0">اضافة مزود جديد</h1>
+                        <h1 class="page-heading d-flex text-dark fw-bold fs-3 flex-column justify-content-center my-0">{{ __('dashboard.edit_resturantSubscription') }}</h1>
                         <!--end::Title-->
                         <!--begin::Breadcrumb-->
                         <ul class="breadcrumb breadcrumb-separatorless fw-semibold fs-7 my-0 pt-1">
                             <!--begin::Item-->
                             <li class="breadcrumb-item text-muted">
-                                <a href="" class="text-muted text-hover-primary">{{ __('dashboard.add_new_Restaurant') }}</a>
+                                <a href="" class="text-muted text-hover-primary">{{ __('dashboard.mainPage') }}</a>
                             </li>
                             <!--end::Item-->
                             <!--begin::Item-->
@@ -26,7 +26,7 @@
                             </li>
                             <!--end::Item-->
                             <!--begin::Item-->
-                            <li class="breadcrumb-item text-muted">المزودين</li>
+                            <li class="breadcrumb-item text-muted">{{ __('dashboard.resturantSubscription') }}</li>
                             <!--end::Item-->
                             <!--begin::Item-->
                             <li class="breadcrumb-item">
@@ -34,7 +34,7 @@
                             </li>
                             <!--end::Item-->
                             <!--begin::Item-->
-                            <li class="breadcrumb-item text-muted">اضافة المزود جديد</li>
+                            <li class="breadcrumb-item text-muted">{{ __('dashboard.edit_resturantSubscription') }}</li>
                             <!--end::Item-->
                         </ul>
                         <!--end::Breadcrumb-->
@@ -57,11 +57,14 @@
                 <div id="kt_app_content_container" class="app-container container-xxl">
 
                     @include('layouts.sessions-messages')
-                    <form id="kt_ecommerce_add_category_form" class="form d-flex flex-column flex-lg-row"
-                        action="{{ route('Restaurants.store') }}" method="POST" enctype="multipart/form-data">
+                    <form id="kt_ecommerce_add_appconfig_form"
+                        class="form d-flex flex-column flex-lg-row"
+                        action="{{ route('resturantSubscription.update'  , $resturantSubscription->id) }}"
+                        method="POST"
+                        enctype="multipart/form-data">
                         @csrf
-                        @include('admin.Restaurants._form')
-                        <!--end::Main column-->
+                        @method('PUT')
+                        @include('admin.resturantSubscription._form')
 
                     </form>
                 </div>
@@ -84,10 +87,51 @@
             }
         });
     </script>
-    <script src="{{ asset('assets/js/custom/apps/ecommerce/catalog/save-driver.js') }}"></script>
+    <script src="{{ asset('assets/js/custom/apps/ecommerce/catalog/save-marinase.js') }}"></script>
     <script src="{{ asset('assets/js/widgets.bundle.js') }}"></script>
     <script src="{{ asset('assets/js/custom/widgets.js') }}"></script>
     <script src="{{ asset('assets/js/custom/utilities/modals/upgrade-plan.js') }}"></script>
     <script src="{{ asset('assets/js/custom/utilities/modals/create-app.js') }}"></script>
     <script src="{{ asset('assets/js/custom/utilities/modals/users-search.js') }}"></script>
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function(e) {
+            FormValidation.formValidation(
+                document.getElementById('kt_ecommerce_add_resturantSubscription_form'), {
+                    fields: {
+                        'name[ar]': {
+                            validators: {
+                                notEmpty: {
+                                    message: '{{ __('dashboard.name_ar_required') }}',
+                                },
+                            },
+                        },
+
+                        'name[en]': {
+                            validators: {
+                                notEmpty: {
+                                    message: '{{ __('dashboard.name_en_required') }}',
+                                },
+                            },
+                        },
+                    },
+                    plugins: {
+                        trigger: new FormValidation.plugins.Trigger(),
+                        submitButton: new FormValidation.plugins.SubmitButton(),
+                        defaultSubmit: new FormValidation.plugins.DefaultSubmit(),
+                        bootstrap: new FormValidation.plugins.Bootstrap5(),
+                    },
+                });
+        });
+    </script>
+    <script>
+        $(document).ready(function() {
+            const checkbox = $('#status_{{ $resturantSubscription->id }}');
+            const hiddenInput = $('input[name="status"]');
+            checkbox.on('change', function() {
+                hiddenInput.val(checkbox.is(':checked') ? 1 : 0);
+            });
+        });
+    </script>
 @endsection

@@ -4,23 +4,25 @@ namespace App\Http\Controllers\Admin;
 
 use App\DataTables\BoatTypeDataTables;
 use App\DataTables\CategoryDataTables;
+use App\DataTables\ResturantSubscriptionDataTables;
 use App\DataTables\SubscriptionDataTables;
 use App\Http\Controllers\Controller;
 use App\Models\Boat_type;
 use App\Models\Category;
+use App\Models\RestauarntSubscription;
 use App\Models\Subscription;
 use Illuminate\Http\Request;
 
-class SubscriptionController extends Controller
+class ResturantSubscriptionController extends Controller
 {
    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(SubscriptionDataTables $dataTable)
+    public function index(ResturantSubscriptionDataTables $dataTable)
     {
-        return $dataTable->render('admin.subscription.index');
+        return $dataTable->render('admin.resturantSubscription.index');
     }
 
     /**
@@ -30,9 +32,9 @@ class SubscriptionController extends Controller
      */
     public function create()
     {
-        $subscription = new Subscription();
+        $resturantSubscription = new RestauarntSubscription();
 
-        return view('admin.subscription.create', compact('subscription'));
+        return view('admin.resturantSubscription.create', compact('resturantSubscription'));
     }
 
     /**
@@ -50,8 +52,8 @@ class SubscriptionController extends Controller
             $image_path = $request->file('image')->store('uploads', 'public');
             $data['image'] = $image_path;
         }
-        Subscription::create($data);
-        return redirect()->route('subscription.index');
+        RestauarntSubscription::create($data);
+        return redirect()->route('resturantSubscription.index');
     }
 
     /**
@@ -73,8 +75,8 @@ class SubscriptionController extends Controller
      */
     public function edit($id)
     {
-        $subscription = Subscription::find($id);
-        return view('admin.subscription.edit', compact('subscription'));
+        $resturantSubscription = RestauarntSubscription::find($id);
+        return view('admin.resturantSubscription.edit', compact('resturantSubscription'));
     }
 
     /**
@@ -86,15 +88,15 @@ class SubscriptionController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $subscription = Subscription::find($id);
+        $resturantSubscription = RestauarntSubscription::find($id);
         $data = $request->except('image_remove');
         if ($request->image) {
             $image_path = $request->file('image')->store('uploads', 'public');
             $data['image'] = $image_path;
         }
 
-        $subscription->update($data);
-        return redirect()->route('subscription.index');
+        $resturantSubscription->update($data);
+        return redirect()->route('resturantSubscription.index');
     }
 
     /**
@@ -105,15 +107,15 @@ class SubscriptionController extends Controller
      */
     public function destroy($id)
     {
-        $subscription = Subscription::find($id);
-        $subscription->delete();
+        $resturantSubscription = RestauarntSubscription::find($id);
+        $resturantSubscription->delete();
         return response()->json(['status' => 'success', 'message' =>  __('dashboard.deleted_success')]);
     }
 
     public function updateStatus(Request $request): \Illuminate\Http\JsonResponse
     {
         $id = $request->get('id');
-        $info = Subscription::find($id);
+        $info = RestauarntSubscription::find($id);
         return updateModelStatus($info);
     }
 }

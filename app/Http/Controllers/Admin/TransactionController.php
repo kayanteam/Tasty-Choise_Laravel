@@ -4,23 +4,23 @@ namespace App\Http\Controllers\Admin;
 
 use App\DataTables\BoatTypeDataTables;
 use App\DataTables\CategoryDataTables;
-use App\DataTables\SubscriptionDataTables;
+use App\DataTables\TransactionDataTables;
 use App\Http\Controllers\Controller;
 use App\Models\Boat_type;
 use App\Models\Category;
-use App\Models\Subscription;
+use App\Models\WalletTransaction;
 use Illuminate\Http\Request;
 
-class SubscriptionController extends Controller
+class TransactionController extends Controller
 {
    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(SubscriptionDataTables $dataTable)
+    public function index(TransactionDataTables $dataTable)
     {
-        return $dataTable->render('admin.subscription.index');
+        return $dataTable->render('admin.transaction.index');
     }
 
     /**
@@ -30,9 +30,9 @@ class SubscriptionController extends Controller
      */
     public function create()
     {
-        $subscription = new Subscription();
+        $transaction = new WalletTransaction();
 
-        return view('admin.subscription.create', compact('subscription'));
+        return view('admin.transaction.create', compact('transaction'));
     }
 
     /**
@@ -50,8 +50,8 @@ class SubscriptionController extends Controller
             $image_path = $request->file('image')->store('uploads', 'public');
             $data['image'] = $image_path;
         }
-        Subscription::create($data);
-        return redirect()->route('subscription.index');
+        WalletTransaction::create($data);
+        return redirect()->route('transaction.index');
     }
 
     /**
@@ -73,8 +73,8 @@ class SubscriptionController extends Controller
      */
     public function edit($id)
     {
-        $subscription = Subscription::find($id);
-        return view('admin.subscription.edit', compact('subscription'));
+        $transaction = WalletTransaction::find($id);
+        return view('admin.transaction.edit', compact('transaction'));
     }
 
     /**
@@ -86,15 +86,15 @@ class SubscriptionController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $subscription = Subscription::find($id);
+        $transaction = WalletTransaction::find($id);
         $data = $request->except('image_remove');
         if ($request->image) {
             $image_path = $request->file('image')->store('uploads', 'public');
             $data['image'] = $image_path;
         }
 
-        $subscription->update($data);
-        return redirect()->route('subscription.index');
+        $transaction->update($data);
+        return redirect()->route('transaction.index');
     }
 
     /**
@@ -105,15 +105,15 @@ class SubscriptionController extends Controller
      */
     public function destroy($id)
     {
-        $subscription = Subscription::find($id);
-        $subscription->delete();
+        $transaction = WalletTransaction::find($id);
+        $transaction->delete();
         return response()->json(['status' => 'success', 'message' =>  __('dashboard.deleted_success')]);
     }
 
     public function updateStatus(Request $request): \Illuminate\Http\JsonResponse
     {
         $id = $request->get('id');
-        $info = Subscription::find($id);
+        $info = WalletTransaction::find($id);
         return updateModelStatus($info);
     }
 }

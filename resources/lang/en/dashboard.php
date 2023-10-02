@@ -633,8 +633,8 @@ return [
     'enter_text' => 'enter text',
     'productType' => 'meal Type',
     'add_new_productType'=>'add new meal type',
-
-    '' => '',
+    'resturant' =>'Resturants' ,
+    'manager_name' => 'manger name',
     '' => '',
     '' => '',
     '' => '',
