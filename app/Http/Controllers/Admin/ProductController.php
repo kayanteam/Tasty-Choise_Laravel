@@ -10,6 +10,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Boat_type;
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\ProductType;
 use App\Models\Subscription;
 use Illuminate\Http\Request;
 
@@ -33,8 +34,8 @@ class ProductController extends Controller
     public function create()
     {
         $product = new Product();
-
-        return view('admin.product.create', compact('product'));
+        $product_type = ProductType::Active()->get();
+        return view('admin.product.create', compact('product' , 'product_type'));
     }
 
     /**
@@ -76,7 +77,8 @@ class ProductController extends Controller
     public function edit($id)
     {
         $product = Product::find($id);
-        return view('admin.product.edit', compact('product'));
+        $product_type = ProductType::Active()->get();
+        return view('admin.product.edit', compact('product' , 'product_type'));
     }
 
     /**

@@ -4,10 +4,12 @@ namespace App\Http\Controllers\Api\Partner;
 
 use App\Http\Controllers\Controller;
 use App\Models\Product;
+use App\Traits\ApiTrait;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
+    use ApiTrait;
     /**
      * Display a listing of the resource.
      */
@@ -28,13 +30,16 @@ class ProductController extends Controller
             'product_type_id' => 'required|exists:product_types,id',
             'description' => 'required|string',
         ]);
-
-        $data = $request->merge([
+         $request->merge([
             'restaurant_id' => auth('restaurant')->id(),
         ]);
+        $data = $request->all();
+        if($request->hasFile('image'))
+        {
+            $data['image'] = $request->file('image')->store('products');
+        }
         //store Image
         Product::create($data);
-
         return $this->SuccessApi(null, 'تم اضافة المنتج بنجاح');
 
 
@@ -62,9 +67,8 @@ class ProductController extends Controller
         ]);
         $data = $request->all();
         //store Image
-        Product::create($data);
-
-        return $this->SuccessApi(null, 'تم اضافة المنتج بنجاح');
+        Product::find($id)->update($data);
+        return $this->SuccessApi(null, 'تم تعديل المنتج بنجاح');
     }
 
 

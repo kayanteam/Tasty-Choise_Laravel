@@ -18,7 +18,6 @@ class NotificationController extends Controller
     {
         $user = Auth::guard('restaurant')->user();
         return new NotificationCollection($user->notifications()->latest()->paginate(10));  
-
     }
 
 }

@@ -3,13 +3,14 @@
 namespace App\Traits;
 
 use App\Models\Employee;
+use App\Models\Restaurant;
 use App\Models\Sector;
 use Illuminate\Http\Request;
 
 trait FcmTrait
 {
 
-    private static $apiKey = "AAAAGvbpX7Q:APA91bHoHXAsziE0zD-GAxHETLmRAS-GzrxRGeOESUosOoEBcbOY1TUEx82E0nWM7CtiF6SGo7qz8zeWWzL0d2desgmGjEexbiX1A2xIWYPU90nwEbYUc848HP49lMd3J0EJvhIfGwRg";
+    private static $apiKey = "AAAAHr35XOo:APA91bH8lmd4IXV1Dj2yUxKYpWM6RrTn-zTJmMHyDwxGinubCbhBJlj5UmAX9lQS-TYX0rY7yYqNgI8ziCbYjGpiOICx_IjyQLjvlkFI-1AbeHYBmb3TimKVy7begal_PNFV8cTIL2yx";
 
 
     public function sendUserFcmNotifications($token, $title, $message)
@@ -166,9 +167,9 @@ trait FcmTrait
         $apiKey = self::$apiKey;
 
         $fcmUrl = "https://fcm.googleapis.com/fcm/send";
-        $employees = Employee::where('device_token', '!=', null)->get();
+        $employees = Restaurant::where('fcm_token', '!=', null)->get();
         foreach ($employees as $employee) {
-            $token = $employee->device_token;
+            $token = $employee->fcm_token;
             $body = $message;
             $notification = array(
                 "title" => $title,

@@ -11,13 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('settings', function (Blueprint $table) {
+        Schema::create('common_questions', function (Blueprint $table) {
             $table->id();
-            //['privacy' , 'about-us' , 'terms'];
-            $table->string('key')->nullable();
-            $table->text('value')->nullable();
-
-            $table->boolean('status')->default(true);
+            $table->text('title')->nullable();
+            $table->text('desc')->nullable();
+            $table->boolean('status')->default(1);
+            $table->enum('type' , ['user' , 'partner'])->default('user');
             $table->timestamps();
         });
     }
@@ -27,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('settings');
+        Schema::dropIfExists('common_questions');
     }
 };

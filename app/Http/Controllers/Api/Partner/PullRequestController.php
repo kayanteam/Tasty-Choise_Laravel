@@ -13,10 +13,7 @@ use Illuminate\Http\Request;
 
 class PullRequestController extends Controller
 {
-
     use ApiTrait ;
-    
-
     public function RequestMoney(Request $request)
     {
         $request->validate([
@@ -27,18 +24,8 @@ class PullRequestController extends Controller
             'bank'=> 'nullable' ,
         ]);
 
-        $request->merge(['driver_id'=> auth('partner')->user()->id]);
-
+        $request->merge(['restaurant_id'=> auth('restaurant')->user()->id]);
         PullRequest::create($request->all());
-
-        //Transactions 
-        // $wallet = Wallet::where('userable_id' , auth('user')->id())->where('userable_type' , User::class)->first();
-       
-        // WalletTransaction::create([
-        //     'wallet_id' => $wallet->id,
-        //     'amount' => $request->amount,
-        //     'type'=> 2 ,
-        // ]);
         return $this->SuccessApi(null);
     }
 }

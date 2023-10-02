@@ -57,6 +57,8 @@ class AuthController extends Controller
             'email' => [Rule::requiredIf($request->phone == null), 'email', 'unique:restaurants,email'],
             'password' => ['required', 'string', 'min:8'],
             'name'=> 'required|max:50' ,
+            'category_id'=> 'required|exists:categories,id' ,
+            'manager_name'=> 'required|max:50' ,
         ]);
 
         $code = $this->generateCode() ;

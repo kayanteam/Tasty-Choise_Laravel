@@ -5,10 +5,12 @@ namespace App\Http\Controllers\Api\Partner;
 use App\Http\Controllers\Controller;
 use App\Models\Product;
 use App\Models\Subscription;
+use App\Traits\ApiTrait;
 use Illuminate\Http\Request;
 
 class SubscriptionController extends Controller
 {
+    use ApiTrait;
     /**
      * Display a listing of the resource.
      */
@@ -16,6 +18,7 @@ class SubscriptionController extends Controller
     {
        //SHOW SUBSCRIPTIONS
        $subscriptions = Subscription::where('status', 1)->get();
+       return $this->SuccessApi($subscriptions);
     }
 
 

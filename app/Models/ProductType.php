@@ -19,4 +19,10 @@ class ProductType extends Model
 
             return asset('storage/'.$this->image);
     }
+
+
+    public function scopeActive()
+    {
+        return $this->where('status' , 1);
+    }
 }

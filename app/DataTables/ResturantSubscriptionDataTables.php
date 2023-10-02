@@ -72,7 +72,7 @@ class ResturantSubscriptionDataTables extends DataTable
      * @param \App\Models\UserDataTable $model
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function query(Subscription $model): QueryBuilder
+    public function query(RestauarntSubscription $model): QueryBuilder
     {
         $data =  $model->newQuery();
         return $data;

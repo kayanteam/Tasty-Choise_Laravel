@@ -4,14 +4,17 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Translatable\HasTranslations;
 
-class Setting extends Model
+class CommonQuestion extends Model
 {
     use HasFactory;
     protected $guarded = [];
-    public static $keys = ['whatsapp', 'twitter', 'tiktok', 'instegram', 'privacy-policy', 'aboutapp'];
-    
 
 
     
+    public function ScopeActive($query)
+    {
+        return $query->where('status' , 1);
+    }
 }

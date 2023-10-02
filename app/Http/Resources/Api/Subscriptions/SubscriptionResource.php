@@ -3,9 +3,10 @@
 namespace App\Http\Resources\Api\Wallet;
 
 use App\Http\Resources\Api\Services\ServiceResource;
+use App\Models\RestauarntSubscription;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class WalletTransactionResource extends JsonResource
+class SubscriptionResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -15,12 +16,14 @@ class WalletTransactionResource extends JsonResource
      */
     public function toArray($request)
     {
+        $Sub = RestauarntSubscription::where('resturant_id' , auth('restaurant')->id())->where('subscription_id' , $this->id)->first();
         return [
             'id' => $this->id,
-            'type'=> $this->type == 'deposit' ? 'سحب رصيد' : 'ايداع رصيد' ,
-            'amount'=> $this->amount ,
-            'currency'=> __('dashboard.currency') ,
-            'created_at' => $this->created_at->format('y-m-d'),
+            'name'=> $this->name ,
+            'price'=> $this->price ,
+            'days'=> $this->duration ,
+            'has_order'=> $this->has_order ,
+            'is_subscribed'=> $Sub ? $Sub->status : 'unsubscribe' ,
         ];
        
     }

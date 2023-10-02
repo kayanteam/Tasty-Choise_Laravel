@@ -29,11 +29,11 @@ class HomeController extends Controller
         $rest = auth('restaurant')->user();
     
         $ads = Ads::latest()->limit(10)->get();
-        $myproducts  = Product::where('restaurant_id' ,  $rest->id )->latest()->paginate($paginate);
+        $myproducts  = Product::where('restaurant_id' ,  $rest->id )->latest()->get();
 
         $data = [
             'ads' => $ads ,
-            'orders' => $myproducts ,
+            'prodtucts' => $myproducts ,
         ];
         return $this->SuccessApi($data); 
        

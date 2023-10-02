@@ -20,12 +20,16 @@ use App\Models\ShoppingType;
 use App\Models\TourTime;
 use App\Models\TourType;
 use App\Models\WebsiteSettings;
+use App\Traits\ApiTrait;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class AppController extends Controller
 {
-    public function App()
+    use ApiTrait;
+    public function App(Request $request)
     {
+
         $settings = Setting::first();
         return response()->json([
             'facebook' => $settings->facebook,
@@ -38,5 +42,16 @@ class AppController extends Controller
             'email' => $settings->email,
         
         ]);
+    }
+
+
+
+    public function Setting(Request $request)
+    {
+        $request->validate([
+            'key' => ['required' , Rule::in(Setting::$keys)],
+        ]);
+        $settings = Setting::where('key' , $request->key)->first();
+        return $this->SuccessApi($settings->value);
     }
 }

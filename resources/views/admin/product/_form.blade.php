@@ -78,47 +78,45 @@
 
                     <!--begin::Row-->
                     <div class="row">
-                            <div class="col-lg-6">
-                                <div class="form-group row">
-                                    <label class="col-lg-4 col-form-label required fw-bold fs-6">
-                                        {{ __('dashboard.product') }}
-                                    </label>
-                                    <div class="col-lg-8">
-                                        <input autocomplete="off" type="text" name="name"
-                                            class="form-control form-control-lg form-control-solid mb-3 mb-lg-0 name"
-                                            placeholder="name"
-                                            value="{{ old('name', $product->name) }}">
-                                        <div class="fv-plugins-message-container invalid-feedback"></div>
-                                        @error('name')
-                                            <div class="fv-plugins-message-container invalid-feedback">{{ $message }}
-                                            </div>
-                                        @enderror
-                                    </div>
+                        <div class="col-lg-6">
+                            <div class="form-group row">
+                                <label class="col-lg-4 col-form-label required fw-bold fs-6">
+                                    {{ __('dashboard.product') }}
+                                </label>
+                                <div class="col-lg-8">
+                                    <input autocomplete="off" type="text" name="name"
+                                        class="form-control form-control-lg form-control-solid mb-3 mb-lg-0 name"
+                                        placeholder="name" value="{{ old('name', $product->name) }}">
+                                    <div class="fv-plugins-message-container invalid-feedback"></div>
+                                    @error('name')
+                                        <div class="fv-plugins-message-container invalid-feedback">{{ $message }}
+                                        </div>
+                                    @enderror
                                 </div>
                             </div>
+                        </div>
                     </div>
                     <div class="row">
-                            <div class="col-lg-6">
-                                <div class="form-group row">
-                                    <label class="col-lg-4 col-form-label required fw-bold fs-6">
-                                        {{ __('dashboard.product') }}
-                                    </label>
-                                    <div class="col-lg-8">
-                                        <input autocomplete="off" type="number" name="price"
-                                            class="form-control form-control-lg form-control-solid mb-3 mb-lg-0 price"
-                                            placeholder="price"
-                                            value="{{ old('price' , $product->price) }}">
-                                        <div class="fv-plugins-message-container invalid-feedback"></div>
-                                        @error('price')
-                                            <div class="fv-plugins-message-container invalid-feedback">{{ $message }}
-                                            </div>
-                                        @enderror
-                                    </div>
+                        <div class="col-lg-6">
+                            <div class="form-group row">
+                                <label class="col-lg-4 col-form-label required fw-bold fs-6">
+                                    {{ __('dashboard.product') }}
+                                </label>
+                                <div class="col-lg-8">
+                                    <input autocomplete="off" type="number" name="price"
+                                        class="form-control form-control-lg form-control-solid mb-3 mb-lg-0 price"
+                                        placeholder="price" value="{{ old('price', $product->price) }}">
+                                    <div class="fv-plugins-message-container invalid-feedback"></div>
+                                    @error('price')
+                                        <div class="fv-plugins-message-container invalid-feedback">{{ $message }}
+                                        </div>
+                                    @enderror
                                 </div>
                             </div>
-                    </div>
+                        </div>
 
-                    <div class="row">
+
+
                         <div class="col-lg-6">
                             <div class="form-group row">
                                 <label class="col-lg-4 col-form-label required fw-bold fs-6">
@@ -128,7 +126,7 @@
                                     <input autocomplete="off" type="text" name="description"
                                         class="form-control form-control-lg form-control-solid mb-3 mb-lg-0 description"
                                         placeholder="description"
-                                        value="{{ old('description' , $product->description) }}">
+                                        value="{{ old('description', $product->description) }}">
                                     <div class="fv-plugins-message-container invalid-feedback"></div>
                                     @error('description')
                                         <div class="fv-plugins-message-container invalid-feedback">{{ $message }}
@@ -137,43 +135,70 @@
                                 </div>
                             </div>
                         </div>
-                </div>
-
-                <div class="row fv-plugins-icon-container">
-                    <label class="col-lg-2 col-form-label required fw-bold fs-6">{{ __('dashboard.has_order') }}
-                    </label>
-                    <div class="col-lg-4 d-flex align-items-center">
-                        <div class="form-check form-check-solid form-check-custom form-switch">
-
-                            <input type="hidden" name="has_order" value="0">
-                            <input data-id="{{ $product->id }}" class="form-check-input w-45px h-30px sts-fld"
-                                type="checkbox" id="has_order_{{ $product->id }}" name="has_order" value="1"
-                                {{ old('has_order', $product->has_order ?? '') == 1 ? 'checked' : '' }}>
-
-                        </div>
                     </div>
-                </div>
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="form-group row">
+                                <label class="col-lg-4 col-form-label required fw-bold fs-6">
+                                    {{ __('dashboard.category') }}
+                                </label>
+                                <div class="col-lg-8">
+                                    <select name="product_type_id"
+                                        class="form-control form-control-lg form-control-solid mb-3 mb-lg-0">
+                                        <option value="">{{ __('dashboard.select_ad_category') . ' ... ' }}
+                                        </option>
+                                        @foreach ($product_type as $type)
+                                            <option value="{{ $type->id }}"
+                                                {{ old('product_type_id', $product->product_type_id) == $type->id ? 'selected' : '' }}>
+                                                {{ $product->name }}
+                                            </option>
+                                        @endforeach
+                                    </select>
 
-                <div class="row">
-                    <div class="col-lg-6">
-                        <div class="form-group row">
-                            <label class="col-lg-4 col-form-label required fw-bold fs-6">
-                                {{ __('dashboard.product') }}
-                            </label>
-                            <div class="col-lg-8">
-                                <input autocomplete="off" type="number" name="duration"
-                                    class="form-control form-control-lg form-control-solid mb-3 mb-lg-0 duration"
-                                    placeholder="duration"
-                                    value="{{ old('duration' , $product->duration) }}">
-                                <div class="fv-plugins-message-container invalid-feedback"></div>
-                                @error('duration')
-                                    <div class="fv-plugins-message-container invalid-feedback">{{ $message }}
-                                    </div>
-                                @enderror
+                                    <div class="fv-plugins-message-container invalid-feedback"></div>
+                                    @error('category_id')
+                                        <div class="fv-plugins-message-container invalid-feedback">{{ $message }}
+                                        </div>
+                                    @enderror
+                                </div>
                             </div>
                         </div>
                     </div>
-            </div>
+
+                    <div class="row fv-plugins-icon-container">
+                        <label class="col-lg-2 col-form-label required fw-bold fs-6">{{ __('dashboard.has_order') }}
+                        </label>
+                        <div class="col-lg-4 d-flex align-items-center">
+                            <div class="form-check form-check-solid form-check-custom form-switch">
+
+                                <input type="hidden" name="has_order" value="0">
+                                <input data-id="{{ $product->id }}" class="form-check-input w-45px h-30px sts-fld"
+                                    type="checkbox" id="has_order_{{ $product->id }}" name="has_order" value="1"
+                                    {{ old('has_order', $product->has_order ?? '') == 1 ? 'checked' : '' }}>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="form-group row">
+                                <label class="col-lg-4 col-form-label required fw-bold fs-6">
+                                    {{ __('dashboard.product') }}
+                                </label>
+                                <div class="col-lg-8">
+                                    <input autocomplete="off" type="number" name="duration"
+                                        class="form-control form-control-lg form-control-solid mb-3 mb-lg-0 duration"
+                                        placeholder="duration" value="{{ old('duration', $product->duration) }}">
+                                    <div class="fv-plugins-message-container invalid-feedback"></div>
+                                    @error('duration')
+                                        <div class="fv-plugins-message-container invalid-feedback">{{ $message }}
+                                        </div>
+                                    @enderror
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
                     <!--end::Row-->
                     <!--begin::Row-->

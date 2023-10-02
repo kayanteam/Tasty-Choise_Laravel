@@ -6,10 +6,11 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Laravel\Passport\HasApiTokens;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
 
 class Restaurant extends Authenticatable
 {
-    use HasFactory , HasApiTokens;
+    use HasFactory , HasApiTokens , Notifiable;
     protected $guarded = [];
 
 
@@ -18,7 +19,7 @@ class Restaurant extends Authenticatable
         return asset('storage/'.$this->image);
     }
 
-    public function wallet()
+    public function Wallet()
     {
         return $this->hasOne(Wallet::class, 'restaurant_id', 'id');
     }

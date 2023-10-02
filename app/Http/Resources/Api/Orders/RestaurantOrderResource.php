@@ -23,7 +23,7 @@ class RestaurantOrderResource extends JsonResource
             'order_num' => $this->order_number,
             'user'=> $this->user_id ?  [
                 'id' => $this->user_id ,
-                'image'=> $user->image ,
+                'image'=> $user->image_path ,
                 'name'=> $user->name ,
             ] : null ,
             'status'=> $this->status ,
@@ -33,7 +33,7 @@ class RestaurantOrderResource extends JsonResource
                 'name'=> $this->product->name ,
                 'image'=> $this->product->image_path ,
                 'price'=> $this->product->price ,
-                'count'=> $this->count ,
+                'count'=> $this->quantity ,
             ],    
         ];
        

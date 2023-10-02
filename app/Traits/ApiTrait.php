@@ -16,7 +16,7 @@ trait ApiTrait {
         // return rand(1000, 9999);
     }
 
-    public function SuccessApi($user = null  , $msg = 'data allowed successfully')
+    public function SuccessApi($user = null  , $msg = 'تم بنجاح')
     {
         return Response()->Json([
             'status' => true,
@@ -28,7 +28,7 @@ trait ApiTrait {
     }
 
 
-    public function SuccessCustomApi($user = null  , $msg = 'data allowed successfully' , $quastionnaireId = null)
+    public function SuccessCustomApi($user = null  , $msg = 'تم بنجاح' , $quastionnaireId = null)
     {
         return Response()->Json([
             'status' => true,

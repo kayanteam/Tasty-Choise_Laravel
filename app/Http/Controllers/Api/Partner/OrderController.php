@@ -18,8 +18,10 @@ use App\Models\Order;
 use App\Models\Partner;
 use App\Models\Reviews;
 use App\Models\Service;
+use App\Models\User;
 use App\Notifications\AcceptNotification;
 use App\Notifications\CancelNotification;
+use App\Notifications\OrderNotify;
 use App\Traits\ApiTrait;
 use App\Traits\CutstomTrait;
 use App\Traits\FcmTrait;
@@ -35,10 +37,13 @@ class OrderController extends Controller
 
     public function ShowAllOrders(Request $request)
     {
-        $status = $request->status ?? 'pending';
+        $status = $request->status ?? 'open';
         $paginate = $request->pageLength ?? 15;
-        $user = auth('restaurant')->user();
+        $restaurant = auth('restaurant')->user();
         $orders = Order::where('status', $status)
+            ->whereHas('product' , function($q) use($restaurant){
+                $q->where('restaurant_id' , $restaurant->id);
+            })
             ->latest()
             ->paginate($paginate);
         return new RestaurantOrderCollection($orders);
@@ -65,17 +70,17 @@ class OrderController extends Controller
         $order->save();
 
 
-        // $opNotificationOpts = $order->NotificationOptions($order->id);
-        // $notification = $opNotificationOpts[Order::NOTIFICATION_TYPE[$request->status]];
+        $opNotificationOpts = $order->NotificationOptions($order->id);
+       
+        $notification = $opNotificationOpts[Order::NOTIFICATION_TYPE[$request->status]];
+        // send to user
+        $users = User::where('id' , $order->user_id)->get();
 
-        //send to user
-        // $users = User::where('id' , $order->user_id)->get();
-
-        // Notification::send($users , new NewNotification($order , $notification));
+        Notification::send($users , new OrderNotify($order , $notification));
 
         // $this->SendNotification($users,$notification['title'],$notification['details'] , $order->id, Order::NOTIFICATION_TYPE[$request->status] );
 
 
-        return $this->SuccessApi(null);
+        return $this->SuccessApi( $notification , $notification['title'] );
     }
 }

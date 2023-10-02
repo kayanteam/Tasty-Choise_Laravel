@@ -19,7 +19,7 @@ class WalletController extends Controller
      */
     public function index()
     {
-       $wallet = auth('partner')->user()->Wallet;
+       $wallet = auth('restaurant')->user()->Wallet;
         if(!$wallet)
             return $this->FailedApi('Wallet Not Found');
 
