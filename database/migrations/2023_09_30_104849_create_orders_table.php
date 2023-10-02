@@ -21,6 +21,9 @@ return new class extends Migration
             //product id
             $table->foreignId('product_id')->constrained('products');
 
+            $table->integer('quantity')->default(1);
+            $table->unsignedFloat('total')->default(0);
+
             $table->timestamps();
         });
     }

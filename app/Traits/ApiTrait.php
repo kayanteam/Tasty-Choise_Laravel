@@ -9,6 +9,13 @@ use Illuminate\Http\Request;
 trait ApiTrait {
 
 
+    //genrate random code
+    public function generateCode()
+    {
+        return 1111;
+        // return rand(1000, 9999);
+    }
+
     public function SuccessApi($user = null  , $msg = 'data allowed successfully')
     {
         return Response()->Json([

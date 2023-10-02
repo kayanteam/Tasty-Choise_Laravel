@@ -17,7 +17,6 @@ return new class extends Migration
             $table->string('price')->nullable();
             $table->string('duration')->nullable();
             $table->text('description')->nullable();
-
             $table->boolean('has_order')->default(true);
             $table->boolean('status')->default(true);
 

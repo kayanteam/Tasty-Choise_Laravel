@@ -23,4 +23,5 @@ class Restaurant extends Model
     {
         return $this->hasOne(Wallet::class, 'wallet_id');
     }
+   
 }
