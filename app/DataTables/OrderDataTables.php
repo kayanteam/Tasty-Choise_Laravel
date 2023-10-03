@@ -45,7 +45,7 @@ class OrderDataTables extends DataTable
             })
             ->editColumn('name', function (Order $modal) {
 
-                return $modal->product->restaurant->name;
+                return $modal->product->resturant->name;
             })
             ->editColumn('email', function (Order $modal) {
 

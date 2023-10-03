@@ -12,7 +12,7 @@
                     <div class="page-title d-flex flex-column justify-content-center flex-wrap me-3">
                         <!--begin::Title-->
                         <h1 class="page-heading d-flex text-dark fw-bold fs-3 flex-column justify-content-center my-0">
-                            {{ __('dashboard.show_resturant') }}</h1>
+                            {{ ('عرض المطعم') }}</h1>
                         <!--end::Title-->
                         <!--begin::Breadcrumb-->
                         <ul class="breadcrumb breadcrumb-separatorless fw-semibold fs-7 my-0 pt-1">
@@ -27,7 +27,7 @@
                             </li>
                             <!--end::Item-->
                             <!--begin::Item-->
-                            <li class="breadcrumb-item text-muted">{{ __('dashboard.resturant') }}</li>
+                            <li class="breadcrumb-item text-muted">{{ __('المطعم') }}</li>
                             <!--end::Item-->
                             <!--begin::Item-->
                             <li class="breadcrumb-item">
@@ -35,7 +35,7 @@
                             </li>
                             <!--end::Item-->
                             <!--begin::Item-->
-                            <li class="breadcrumb-item text-muted">{{ __('dashboard.show_resturant') }}</li>
+                            <li class="breadcrumb-item text-muted">{{'عرض المطعم' }}</li>
                             <!--end::Item-->
                         </ul>
                         <!--end::Breadcrumb-->
@@ -84,11 +84,19 @@
                                                             <!--begin::Details-->
                                                             <table class="col-lg-6 table fs-6 fw-bold gs-0 gy-2 gx-2">
                                                                 <tbody>
+
                                                                     <tr class="">
                                                                         <td class="text-gray-400">
                                                                             {{ __('dashboard.name') }}</td>
                                                                         <td class="text-gray-800">
                                                                             {{ $resturant->name }}
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr class="">
+                                                                        <td class="text-gray-400">
+                                                                            {{('مدير المطعم') }}</td>
+                                                                        <td class="text-gray-800">
+                                                                            {{ $resturant->manager_name }}
                                                                         </td>
                                                                     </tr>
                                                                     <tr class="">
@@ -123,8 +131,8 @@
                                             <!--end::Card header-->
                                             <div class="d-flex flex-root">
 
-                                                <div class="d-flex flex-column flex-row-fluid mt-3">
-                                                    <h5>{{ __('dashboard.boats') }}</h5>
+                                                <div class="d-flex flex-column flex-row-fluid mt-3" >
+                                                    <h5>{{ ('المنتجات') }}</h5>
                                                     <div class="d-flex flex-row flex-column-fluid">
                                                         <div class="d-flex flex-row-fluid justify-content-center ">
                                                             {{-- <div class="mt-3"> --}}
@@ -133,30 +141,167 @@
                                                                 <thead>
                                                                     <tr>
                                                                         <th scope="col">#</th>
-                                                                        <th scope="col">صورة المركب</th>
-                                                                        <th scope="col">اسم المركب</th>
-                                                                        <th scope="col">الطلبات</th>
+                                                                        <th scope="col">صورة المنتج</th>
+                                                                        <th scope="col">اسم المنتج</th>
+                                                                        <th scope="col">سعر المنتج</th>
+                                                                        <th scope="col">نوع المنتج</th>
+
                                                                     </tr>
+                                                                    
                                                                 </thead>
                                                                 <tbody>
-                                                                    @foreach ($resturant->boats as $key => $boa)
+                                                                    @foreach ($resturant->products as $key =>$product)
                                                                         <tr>
                                                                             <th scope="row">{{ $key + 1 }}</th>
                                                                             <td>
-                                                                                <img src="{{ $boa->image_path }}"
+                                                                                <img src="{{ asset('storage/'.$product->image) }}"
                                                                                     height="30" width="30" />
                                                                             </td>
-                                                                            <td>{{ $boa->name }}</td>
-                                                                            <td>
-                                                                                <a
-                                                                                    href="{{ route('boats.show', $boa->id) }}#orders">{{ $boa->ordar()->count() }}</a>
-                                                                            </td>
+                                                                            <td>{{ $product->name }}</td>
+                                                                            <td>{{ $product->price }}</td>
+                                                                            <td>{{ $product->productType->name }}</td>
+
+                                                                            
                                                                         </tr>
                                                                     @endforeach
 
                                                                 </tbody>
                                                             </table>
-                                                            {{-- </div> --}}
+                                                           </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <table class="card col-lg-6 table fs-6 fw-bold gs-0 gy-2 gx-2" style="border: 1px solid #000;">
+                                                    <tbody>
+                                                        <h4>{{ ('رصيد المحفظة') }}</h4>
+                                                        <td class="text-gray-800 ps-5">
+                                                            @if ($resturant->Wallet)
+                                                                {{ $resturant->Wallet->balance }}
+                                                            @else
+                                                                لا يوجد محفظة مرتبطة بالمطعم
+                                                            @endif
+                                                        </td>
+                                                    </tbody>
+                                                </table>
+
+                                                <div class="d-flex flex-column flex-row-fluid mt-3">
+                                                    <h5>{{ ('حركات المحفظة') }}</h5>
+                                                    <div class="d-flex flex-row flex-column-fluid">
+                                                        <div class="d-flex flex-row-fluid justify-content-center ">
+                                                            {{-- <div class="mt-3"> --}}
+
+                                                            <table class="table w-100">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th scope="col">#</th>
+                                                                        <th scope="col">'نوع الحركة' </th>
+                                                                      <th scope="col">'القيمة' </th>
+
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    @foreach ($resturant->Wallet->walletTransaction as $key =>$walTra)
+                                                                        <tr>
+                                                                            <th scope="row">{{ $key + 1 }}</th>
+                                                                            
+                                                                            <td>{{ $walTra->type }}</td>
+                                                                            <td>{{ $walTra->amount }}</td>
+
+                                                                            {{-- <td>{{ $product->price }}</td>
+                                                                            <td>{{ $product->productType->name }}</td> --}}
+
+                                                                            
+                                                                        </tr>
+                                                                    @endforeach
+
+                                                                </tbody>
+                                                            </table>
+                                                           </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="d-flex flex-column flex-row-fluid mt-3">
+                                                    <h5>{{ ('الاشتراكات') }}</h5>
+                                                    <div class="d-flex flex-row flex-column-fluid">
+                                                        <div class="d-flex flex-row-fluid justify-content-center ">
+                                                            {{-- <div class="mt-3"> --}}
+
+                                                            <table class="table w-100">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th scope="col">#</th>
+                                                                        <th scope="col">'الباقة' </th>
+                                                                        <th scope="col">'تاريخ الاشتراك' </th>
+                                                                        <th scope="col">'تاريخ انتهاء الباقة ' </th>
+
+                                                                      {{-- <th scope="col"> </th> --}}
+                                                                        {{-- <th scope="col">سعر المنتج</th> --}}
+                                                                        {{-- <th scope="col">نوع المنتج</th> --}}
+
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    @foreach ($resturant->resturantSubscription as $key =>$Sub)
+                                                                        <tr>
+                                                                            <th scope="row">{{ $key + 1 }}</th>
+                                                                            
+                                                                            <td>{{ $Sub->name }}</td>
+                                                                            <td>{{ $Sub->created_at }}</td>
+                                                                            <td>{{ $Sub->expired_at }}</td>
+
+                                                                            {{-- <td>{{ $product->price }}</td>
+                                                                            <td>{{ $product->productType->name }}</td> --}}
+
+                                                                            
+                                                                        </tr>
+                                                                    @endforeach
+
+                                                                </tbody>
+                                                            </table>
+                                                           </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="d-flex flex-column flex-row-fluid mt-3">
+                                                    <h5>{{ ('الطلبات') }}</h5>
+                                                    <div class="d-flex flex-row flex-column-fluid">
+                                                        <div class="d-flex flex-row-fluid justify-content-center ">
+                                                            {{-- <div class="mt-3"> --}}
+
+                                                            <table class="table w-100">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th scope="col">#</th>
+                                                                        <th scope="col">'رقم الطلب' </th>
+                                                                        <th scope="col">' المنتج' </th>
+
+                                                                      {{-- <th scope="col"> </th> --}}
+                                                                        {{-- <th scope="col">سعر المنتج</th> --}}
+                                                                        {{-- <th scope="col">نوع المنتج</th> --}}
+
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    @foreach ($resturant->products->ordar as $key =>$ReOrder)
+                                                                        <tr>
+                                                                            <th scope="row">{{ $key + 1 }}</th>
+                                                                            
+                                                                            <td>{{ $ReOrder->id }}</td>
+                                                                            <td>{{ $ReOrder->product->name }}</td>
+
+                                                                            {{-- <td>{{ $product->price }}</td>
+                                                                            <td>{{ $product->productType->name }}</td> --}}
+
+                                                                            
+                                                                        </tr>
+                                                                    @endforeach
+
+                                                                </tbody>
+                                                            </table>
+                                                           </div>
                                                         </div>
                                                     </div>
                                                 </div>

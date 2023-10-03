@@ -52,9 +52,9 @@ class ResturantController extends Controller
      */
     public function show($id)
     {
-        $Restaurant = Restaurant::find($id);
+        $resturant = Restaurant::with('resturantSubscription')->find($id);
 
-        return view('admin.resturant.show', compact('Restaurant'));
+        return view('admin.resturant.show', compact('resturant'));
     }
 
     /**
@@ -65,8 +65,8 @@ class ResturantController extends Controller
      */
     public function edit($id)
     {
-        $Restaurant = Restaurant::find($id);
-        return view('admin.resturant.edit', compact('Restaurant'));
+        $resturant = Restaurant::find($id);
+        return view('admin.resturant.edit', compact('resturant'));
     }
 
     /**
@@ -78,8 +78,8 @@ class ResturantController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $Restaurant = Restaurant::find($id);
-        $Restaurant->update($request->except('image_remove'));
+        $resturant = Restaurant::find($id);
+        $resturant->update($request->except('image_remove'));
         return redirect()->route('resturant.index');
     }
 
@@ -91,8 +91,8 @@ class ResturantController extends Controller
      */
     public function destroy($id)
     {
-        $Restaurant = Restaurant::find($id);
-        $Restaurant->delete();
+        $resturant = Restaurant::find($id);
+        $resturant->delete();
         return response()->json(['status' => 'success', 'message' =>  __('dashboard.deleted_success')]);
     }
 

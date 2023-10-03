@@ -16,7 +16,7 @@ return new class extends Migration
             $table->enum('type', ['deposit', 'withdraw', 'transfer']);
             $table->foreignId('order_id')->nullable()->constrained('orders');
             $table->foreignId('wallet_id')->constrained('wallets')->cascadeOnDelete();
-
+            $table->unsignedFloat('amount')->nullable();
             $table->timestamps();
         });
     }

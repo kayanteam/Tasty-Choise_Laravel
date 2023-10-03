@@ -29,4 +29,9 @@ class Product extends Model
         return $this->belongsTo(ProductType::class, 'product_type_id', 'id');
     }
 
+    public function ordar()
+    {
+        return $this->hasMany(Order::class, 'product_id');
+    }
+
 }
