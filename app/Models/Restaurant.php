@@ -10,13 +10,18 @@ use Illuminate\Notifications\Notifiable;
 
 class Restaurant extends Authenticatable
 {
-    use HasFactory ,HasApiTokens ,  Notifiable;
+    use HasFactory , HasApiTokens , Notifiable;
     protected $guarded = [];
 
 
     public function getImagePathAttribute()
     {
-        return asset('storage/'.$this->image);
+        if($this->image == null)
+        {
+            return 'https://cdn3.vectorstock.com/i/1000x1000/73/92/chef-avatar-cook-man-working-restaurant-services-vector-38067392.jpg';
+        }
+
+        return asset('storage/'. $this->image);
     }
 
     public function Wallet()
@@ -24,15 +29,20 @@ class Restaurant extends Authenticatable
         return $this->hasOne(Wallet::class, 'restaurant_id', 'id');
     }
 
+    public function scopeActive()
+    {
+        return $this->where('status' , 1);
+    }
+    
+
+    public function Product()
+    {
+        return $this->hasMany(Product::class, 'restaurant_id', 'id');
+    }
 
     public function resturantSubscription()
     {
         return $this->belongsToMany(Subscription::class , RestauarntSubscription::class, 'restaurant_id' , 'subscription_id');
-    }
-
-    public function scopeActive()
-    {
-        return $this->where('status' , 1);
     }
 
 }
