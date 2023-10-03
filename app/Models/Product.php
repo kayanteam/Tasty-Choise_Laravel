@@ -16,7 +16,7 @@ class Product extends Model
     public function getImagePathAttribute()
     {
 
-            return asset('storage/'.$this->image);
+        return asset('storage/'.$this->image);
     }
 
     public function resturant()
