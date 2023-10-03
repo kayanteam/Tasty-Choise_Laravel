@@ -10,7 +10,7 @@ use Illuminate\Notifications\Notifiable;
 
 class Restaurant extends Authenticatable
 {
-    use HasFactory , HasApiTokens , Notifiable;
+    use HasFactory ,HasApiTokens ,  Notifiable;
     protected $guarded = [];
 
 
@@ -22,6 +22,12 @@ class Restaurant extends Authenticatable
     public function Wallet()
     {
         return $this->hasOne(Wallet::class, 'restaurant_id', 'id');
+    }
+
+
+    public function resturantSubscription()
+    {
+        return $this->belongsToMany(Subscription::class , RestauarntSubscription::class, 'restaurant_id' , 'subscription_id');
     }
 
     public function scopeActive()
