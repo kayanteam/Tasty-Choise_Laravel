@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api\Partner;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\Api\Subscriptions\SubscriptionResource;
 use App\Models\Product;
 use App\Models\Subscription;
 use App\Traits\ApiTrait;
@@ -17,8 +18,8 @@ class SubscriptionController extends Controller
     public function index()
     {
        //SHOW SUBSCRIPTIONS
-       $subscriptions = Subscription::where('status', 1)->get();
-       return $this->SuccessApi($subscriptions);
+       $subscriptions = Subscription::get();
+       return $this->SuccessApi(SubscriptionResource::collection($subscriptions), 'الاشتراكات');
     }
 
 
@@ -36,18 +37,7 @@ class SubscriptionController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'price' => 'required|numeric',
-            'image' => 'nulla|image',
-            'product_type_id' => 'required|exists:product_types,id',
-            'description' => 'required|string',
-        ]);
-        $data = $request->all();
-        //store Image
-        Product::create($data);
-
-        return $this->SuccessApi(null, 'تم اضافة المنتج بنجاح');
+       
     }
 
 

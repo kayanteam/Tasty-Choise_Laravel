@@ -14,6 +14,8 @@ use App\Models\MishwarType;
 use App\Models\NavRange;
 use App\Models\OrderType;
 use App\Models\Payment;
+use App\Models\Product;
+use App\Models\ProductType;
 use App\Models\RevisionType;
 use App\Models\Setting;
 use App\Models\ShoppingType;
@@ -30,18 +32,13 @@ class AppController extends Controller
     public function App(Request $request)
     {
 
-        $settings = Setting::first();
-        return response()->json([
-            'facebook' => $settings->facebook,
-            'twitter' => $settings->twitter,
-            'instagram' => $settings->instagram,
-            'snapchat' => $settings->snapchat,
-            'youtube' => $settings->youtube,
-            'whatsapp' => $settings->whatsapp,
-            'phone' => $settings->phone,
-            'email' => $settings->email,
-        
-        ]);
+        $categories = Category::where('status' , 1)->get();
+        $producttypes = ProductType::where('status' , 1)->select('id' , 'name')->get();
+        $data = [
+            'categories' =>CategoryResource::collection($categories),
+            'producttypes' =>$producttypes,
+        ];
+        return $this->SuccessApi($data);
     }
 
 

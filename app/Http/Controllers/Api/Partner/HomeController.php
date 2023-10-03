@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api\Partner;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\AdsResource;
 use App\Http\Resources\Api\Orders\RestaurantOrderCollection;
 use App\Http\Resources\Api\Orders\OrderItemResource;
 use App\Models\Ads;
@@ -32,7 +33,7 @@ class HomeController extends Controller
         $myproducts  = Product::where('restaurant_id' ,  $rest->id )->latest()->get();
 
         $data = [
-            'ads' => $ads ,
+            'ads' => AdsResource::collection($ads) ,
             'prodtucts' => $myproducts ,
         ];
         return $this->SuccessApi($data); 

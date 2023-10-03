@@ -76,7 +76,7 @@ class AuthController extends Controller
         return Response()->Json([
             'status' => true,
             'code' => 200,
-            'message' => 'Register successfully , We will send you a verification code',
+            'message' => 'تم انشاء الحساب بنجاح',
             'user' => null ,
         ], 200);
     }

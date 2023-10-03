@@ -8,6 +8,7 @@ use App\Http\Controllers\Api\Partner\NotificationController;
 use App\Http\Controllers\Api\Partner\OrderController;
 use App\Http\Controllers\Api\Partner\ProductController;
 use App\Http\Controllers\Api\Partner\PullRequestController;
+use App\Http\Controllers\Api\Partner\SubscriptionController;
 use App\Http\Controllers\Api\Partner\WalletController;
 use App\Models\Product;
 use Illuminate\Http\Request;
@@ -57,7 +58,8 @@ Route::prefix('partners')->middleware(['auth:restaurant'])->group(function () {
     Route::post('updateOrder', [OrderController::class, 'UpdateStatus']);
     Route::get('common-quastions', [CommonQuastionsController::class, 'index']);
 
-  
+    //Subscriptions
+    Route::get('subscriptions', [SubscriptionController::class, 'index']);
 
     // Route::post('add-balance', [RequestMoneyController::class, 'StoreParnterTransaction']);
     Route::post('request-money', [PullRequestController::class, 'RequestMoney']);
@@ -83,5 +85,5 @@ Route::prefix('partners')->group(function () {
     Route::post('verify-code', [AuthController::class, 'VerifyCode']);
     Route::post('/refresh_device_token', [AuthController::class, 'RefreshDeviceToken']);
 
-    // Route::get('app', [AppController::class, 'App']);
+    Route::get('app', [AppController::class, 'App']);
 });
