@@ -13,7 +13,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <link rel="canonical" href="https://preview.keenthemes.com/metronic8" />
-    <link rel="shortcut icon" href="{{asset('logo1.png')}}" />
+    <link rel="shortcut icon" href="{{asset('assets/Tasty.png')}}" />
     <!--begin::Fonts(mandatory for all pages)-->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,400,500,600,700" />
     <!--end::Fonts-->
@@ -29,7 +29,7 @@
         .dataTables_wrapper .dataTables_paginate .paginate_button:hover {
           background: none;
           color: black!important;
-         
+
         }
         .dataTables_wrapper .dataTables_paginate .paginate_button:active {
           background: none;
@@ -38,8 +38,8 @@
         .select2-selection__clear{
           display: none !important;
         }
-        
+
     </style>
-   
+
     <!--end::Global Stylesheets Bundle-->
 </head>

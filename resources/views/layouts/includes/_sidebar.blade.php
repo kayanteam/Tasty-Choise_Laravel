@@ -6,8 +6,8 @@
     <div class="app-sidebar-logo px-6" id="kt_app_sidebar_logo">
         <!--begin::Logo image-->
         <a href="{{ route('dashboard') }}" class="w-100 d-flex justify-content-center">
-            <img alt="Logo" src="{{ asset('logo_side.png') }}" class="h-50px w-65 app-sidebar-logo-default" />
-            <img alt="Logo" src="{{ asset('logo_side.png') }}" class="h-50px w-65 app-sidebar-logo-minimize" />
+            <img alt="Logo" src="{{ asset('assets/Tasty.png') }}" class="h-50px w-65 app-sidebar-logo-default" />
+            <img alt="Logo" src="{{ asset('assets/Tasty.png') }}" class="h-50px w-65 app-sidebar-logo-minimize" />
         </a>
         <!--end::Logo image-->
         <!--begin::Sidebar toggle-->
