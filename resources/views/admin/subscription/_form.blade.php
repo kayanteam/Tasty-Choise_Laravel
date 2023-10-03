@@ -86,7 +86,7 @@
                                     <div class="col-lg-8">
                                         <input autocomplete="off" type="text" name="name"
                                             class="form-control form-control-lg form-control-solid mb-3 mb-lg-0 name"
-                                            placeholder="name"
+                                            placeholder="اسم الباقة"
                                             value="{{ old('name', $subscription->name) }}">
                                         <div class="fv-plugins-message-container invalid-feedback"></div>
                                         @error('name')
@@ -106,7 +106,7 @@
                                     <div class="col-lg-8">
                                         <input autocomplete="off" type="number" name="price"
                                             class="form-control form-control-lg form-control-solid mb-3 mb-lg-0 price"
-                                            placeholder="price"
+                                            placeholder="السعر"
                                             value="{{ old('price' , $subscription->price) }}">
                                         <div class="fv-plugins-message-container invalid-feedback"></div>
                                         @error('price')
@@ -127,7 +127,7 @@
                                 <div class="col-lg-8">
                                     <input autocomplete="off" type="text" name="description"
                                         class="form-control form-control-lg form-control-solid mb-3 mb-lg-0 description"
-                                        placeholder="description"
+                                        placeholder="الوصف"
                                         value="{{ old('description' , $subscription->description) }}">
                                     <div class="fv-plugins-message-container invalid-feedback"></div>
                                     @error('description')
@@ -163,7 +163,7 @@
                             <div class="col-lg-8">
                                 <input autocomplete="off" type="number" name="duration"
                                     class="form-control form-control-lg form-control-solid mb-3 mb-lg-0 duration"
-                                    placeholder="duration"
+                                    placeholder="المدة"
                                     value="{{ old('duration' , $subscription->duration) }}">
                                 <div class="fv-plugins-message-container invalid-feedback"></div>
                                 @error('duration')
