@@ -122,6 +122,6 @@ class ProductController extends Controller
     {
         $id = $request->get('id');
         $info = Product::find($id);
-        return updateModelStatus($info);
+        return Controller::updateModelStatus($info);
     }
 }

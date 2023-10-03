@@ -113,6 +113,6 @@ class AdsController extends Controller
     {
         $id = $request->get('id');
         $info = Ads::find($id);
-        return updateModelStatus($info);
+        return Controller::updateModelStatus($info);
     }
 }

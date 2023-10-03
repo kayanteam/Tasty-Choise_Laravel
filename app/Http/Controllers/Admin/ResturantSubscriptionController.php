@@ -116,6 +116,6 @@ class ResturantSubscriptionController extends Controller
     {
         $id = $request->get('id');
         $info = RestauarntSubscription::find($id);
-        return updateModelStatus($info);
+        return Controller::updateModelStatus($info);
     }
 }

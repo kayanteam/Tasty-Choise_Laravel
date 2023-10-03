@@ -150,7 +150,7 @@
                                                                     
                                                                 </thead>
                                                                 <tbody>
-                                                                    @foreach ($resturant->products as $key =>$product)
+                                                                    @foreach ($resturant->Product as $key =>$product)
                                                                         <tr>
                                                                             <th scope="row">{{ $key + 1 }}</th>
                                                                             <td>
@@ -243,18 +243,14 @@
                                                                     </tr>
                                                                 </thead>
                                                                 <tbody>
-                                                                    @foreach ($resturant->resturantSubscription as $key =>$Sub)
+                                                                    @foreach ($subs as $key =>$Sub)
                                                                         <tr>
                                                                             <th scope="row">{{ $key + 1 }}</th>
                                                                             
-                                                                            <td>{{ $Sub->name }}</td>
+                                                                            <td>{{ $Sub->subscription->name }}</td>
                                                                             <td>{{ $Sub->created_at }}</td>
-                                                                            <td>{{ $Sub->expired_at }}</td>
-
-                                                                            {{-- <td>{{ $product->price }}</td>
-                                                                            <td>{{ $product->productType->name }}</td> --}}
-
-                                                                            
+                                                                            <td>{{ Carbon\Carbon::parse($Sub->created_at)->addDays($Sub->subscription->duration) }}</td>
+                                                                         
                                                                         </tr>
                                                                     @endforeach
 
@@ -285,7 +281,7 @@
                                                                     </tr>
                                                                 </thead>
                                                                 <tbody>
-                                                                    @foreach ($resturant->products->ordar as $key =>$ReOrder)
+                                                                    @foreach ($resturant->Orders as $key =>$ReOrder)
                                                                         <tr>
                                                                             <th scope="row">{{ $key + 1 }}</th>
                                                                             

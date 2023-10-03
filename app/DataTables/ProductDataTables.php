@@ -52,7 +52,7 @@ class ProductDataTables extends DataTable
             })
 
             ->editColumn('image', function (Product $modal) {
-                return view('admin.Product.parts._icon', compact('modal'));
+                return view('admin.product.parts._icon', compact('modal'));
             })
             ->addColumn('status', function (Product $model) {
                 return view('admin.product.parts._status', compact('model'));

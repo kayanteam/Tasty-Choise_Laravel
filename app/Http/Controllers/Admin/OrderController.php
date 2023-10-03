@@ -118,6 +118,6 @@ class OrderController extends Controller
     {
         $id = $request->get('id');
         $info = Order::find($id);
-        return updateModelStatus($info);
+        return Controller::updateModelStatus($info);
     }
 }

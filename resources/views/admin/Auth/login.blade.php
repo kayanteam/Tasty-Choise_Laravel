@@ -12,7 +12,7 @@
 				<div class="d-flex flex-center flex-column flex-column-fluid p-10 pb-lg-20">
 					<!--begin::Logo-->
 					<a href="" class="mb-12">
-						<img alt="Logo" src="{{asset('logo.png')}}" class="h-60px" />
+						<img alt="Logo" src="{{asset('assets/Tasty.png')}}" class="h-60px" />
 					</a>
 					<!--end::Logo-->
 					<!--begin::Wrapper-->
@@ -51,7 +51,6 @@
 									<label class="form-label fw-bolder text-dark fs-6 mb-0">كلمة المرور</label>
 									<!--end::Label-->
 									<!--begin::Link-->
-									<a href="{{route('password.request')}}" class="link-primary fs-6 fw-bolder">نسيت كلمة المرور</a>
 									<!--end::Link-->
 								</div>
 								<!--end::Wrapper-->

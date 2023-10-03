@@ -150,6 +150,6 @@ class QuastionsController extends Controller
     {
         $id = $request->get('id');
         $info = MainModel::find($id);
-        return updateModelStatus($info);
+        return Controller::updateModelStatus($info);
     }
 }

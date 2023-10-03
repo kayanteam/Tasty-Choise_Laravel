@@ -114,6 +114,6 @@ class TransactionController extends Controller
     {
         $id = $request->get('id');
         $info = WalletTransaction::find($id);
-        return updateModelStatus($info);
+        return Controller::updateModelStatus($info);
     }
 }

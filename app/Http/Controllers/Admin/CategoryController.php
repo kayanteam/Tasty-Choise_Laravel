@@ -112,6 +112,6 @@ class CategoryController extends Controller
     {
         $id = $request->get('id');
         $info = Category::find($id);
-        return updateModelStatus($info);
+        return Controller::updateModelStatus($info);
     }
 }

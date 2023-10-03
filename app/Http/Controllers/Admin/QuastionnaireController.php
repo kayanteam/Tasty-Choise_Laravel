@@ -323,7 +323,7 @@ class QuastionnaireController extends Controller
     {
         $id = $request->get('id');
         $info = User::find($id);
-        return updateModelStatus($info);
+        return Controller::updateModelStatus($info);
     }
 
 

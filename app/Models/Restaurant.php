@@ -40,6 +40,11 @@ class Restaurant extends Authenticatable
         return $this->hasMany(Product::class, 'restaurant_id', 'id');
     }
 
+    public function Orders()
+    {
+        return $this->hasManyThrough(Order::class, Product::class, 'restaurant_id', 'product_id', 'id', 'id');
+    }
+
     public function resturantSubscription()
     {
         return $this->belongsToMany(Subscription::class , RestauarntSubscription::class, 'restaurant_id' , 'subscription_id');

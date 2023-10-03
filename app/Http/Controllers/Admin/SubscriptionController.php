@@ -114,6 +114,6 @@ class SubscriptionController extends Controller
     {
         $id = $request->get('id');
         $info = Subscription::find($id);
-        return updateModelStatus($info);
+        return Controller::updateModelStatus($info);
     }
 }

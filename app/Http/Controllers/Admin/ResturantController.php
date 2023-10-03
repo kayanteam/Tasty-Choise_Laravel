@@ -6,6 +6,7 @@ use App\DataTables\ProvidersDataTables;
 use App\DataTables\ResturantDataTables;
 use App\Http\Controllers\Controller;
 use App\Models\Provider;
+use App\Models\RestauarntSubscription;
 use App\Models\Restaurant;
 use Illuminate\Http\Request;
 
@@ -52,9 +53,10 @@ class ResturantController extends Controller
      */
     public function show($id)
     {
-        $resturant = Restaurant::with('resturantSubscription')->find($id);
-
-        return view('admin.resturant.show', compact('resturant'));
+        $resturant = Restaurant::find($id);
+        $subs = RestauarntSubscription::where('restaurant_id', $resturant->id)->get();
+      
+        return view('admin.resturant.show', compact('resturant' , 'subs'));
     }
 
     /**
@@ -100,6 +102,6 @@ class ResturantController extends Controller
     {
         $id = $request->get('id');
         $info = Restaurant::find($id);
-        return updateModelStatus($info);
+        return Controller::updateModelStatus($info);
     }
 }

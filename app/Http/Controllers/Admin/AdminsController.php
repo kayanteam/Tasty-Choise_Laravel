@@ -190,6 +190,6 @@ class AdminsController extends Controller
     {
         $id = $request->get('id');
         $info = Admin::find($id);
-        return updateModelStatus($info);
+        return Controller::updateModelStatus($info);
     }
 }
