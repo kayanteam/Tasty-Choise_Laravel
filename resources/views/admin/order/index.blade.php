@@ -73,10 +73,10 @@
                         <!--begin::Card toolbar-->
                         <div class="card-toolbar">
                             <!--begin::Toolbar-->
-                            <div class="d-flex justify-content-end" data-kt-user-table-toolbar="base">
+                            {{-- <div class="d-flex justify-content-end" data-kt-user-table-toolbar="base">
                                 <a href="{{ route('order.create') }}" id="showmodal" type="button"
                                     class="btn btn-dark">{{ __('dashboard.add_new_order') }}</a>
-                            </div>
+                            </div> --}}
                             <!--end::Toolbar-->
 
                         </div>

@@ -39,18 +39,22 @@ class OrderDataTables extends DataTable
 
                 return $modal->id;
             })
-            ->editColumn('price', function (Order $modal) {
+            ->editColumn('product', function (Order $modal) {
 
-                return $modal->price;
+                return $modal->product->name;
             })
-            ->editColumn('restaurant_id', function (Order $modal) {
+            ->editColumn('name', function (Order $modal) {
 
-                return $modal->restaurant_id;
+                return $modal->product->restaurant->name;
+            })
+            ->editColumn('email', function (Order $modal) {
+
+                return $modal->User->email;
             })
 
-            ->editColumn('image', function (Order $modal) {
-                return view('admin.order.parts._icon', compact('modal'));
-            })
+            // ->editColumn('image', function (Order $modal) {
+            //     return view('admin.order.parts._icon', compact('modal'));
+            // })
             ->addColumn('status', function (Order $model) {
                 return view('admin.order.parts._status', compact('model'));
             })
@@ -113,12 +117,12 @@ class OrderDataTables extends DataTable
     {
         return [
             Column::make('DT_RowIndex')->title(__('#'))->addClass('text-center')->orderable(false)->searchable(true),
-            Column::computed('name')->title(__('dashboard.name'))->addClass('text-center'),
-            Column::computed('price')->title(__('dashboard.price'))->addClass('text-center'),
-            Column::computed('image')->title(__('dashboard.image'))->addClass('text-center'),
-            Column::computed('restaurant_id')->title(__('dashboard.restaurant_id'))->addClass('text-center'),
-            Column::computed('product_type_id')->title(__('dashboard.product_type_id'))->addClass('text-center'),
-            // Column::computed('image')->title(__('dashboard.image'))->addClass('text-center'),
+            Column::computed('id')->title('رقم الطلب')->addClass('text-center'),
+            // Column::computed('price')->title(__('dashboard.price'))->addClass('text-center'),
+            Column::computed('product')->title('اسم المنتج')->addClass('text-center'),
+            Column::computed('name')->title('اسم المطعم')->addClass('text-center'),
+            // Column::computed('product_type_id')->title(__('dashboard.product_type_id'))->addClass('text-center'),
+            Column::computed('email')->title('ايميل الزبون')->addClass('text-center'),
             Column::computed('status')
                 ->exportable(false)
                 ->printable(false)
