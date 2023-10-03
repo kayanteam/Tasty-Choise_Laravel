@@ -81,7 +81,7 @@
                             <div class="col-lg-6">
                                 <div class="form-group row">
                                     <label class="col-lg-4 col-form-label required fw-bold fs-6">
-                                        {{ __('dashboard.subscription') }}
+                                        {{ ('اسم الباقة') }}
                                     </label>
                                     <div class="col-lg-8">
                                         <input autocomplete="off" type="text" name="name"
@@ -101,7 +101,7 @@
                             <div class="col-lg-6">
                                 <div class="form-group row">
                                     <label class="col-lg-4 col-form-label required fw-bold fs-6">
-                                        {{ __('dashboard.subscription') }}
+                                        {{ 'سعر الباقة' }}
                                     </label>
                                     <div class="col-lg-8">
                                         <input autocomplete="off" type="number" name="price"
@@ -122,7 +122,7 @@
                         <div class="col-lg-6">
                             <div class="form-group row">
                                 <label class="col-lg-4 col-form-label required fw-bold fs-6">
-                                    {{ __('dashboard.subscription') }}
+                                    {{ ('الوصف') }}
                                 </label>
                                 <div class="col-lg-8">
                                     <input autocomplete="off" type="text" name="description"
@@ -140,7 +140,7 @@
                 </div>
 
                 <div class="row fv-plugins-icon-container">
-                    <label class="col-lg-2 col-form-label required fw-bold fs-6">{{ __('dashboard.has_order') }}
+                    <label class="col-lg-2 col-form-label required fw-bold fs-6">{{ ('تتيح قبول طلبات') }}
                     </label>
                     <div class="col-lg-4 d-flex align-items-center">
                         <div class="form-check form-check-solid form-check-custom form-switch">
@@ -158,7 +158,7 @@
                     <div class="col-lg-6">
                         <div class="form-group row">
                             <label class="col-lg-4 col-form-label required fw-bold fs-6">
-                                {{ __('dashboard.subscription') }}
+                                {{ ('مدة الباقة') }}
                             </label>
                             <div class="col-lg-8">
                                 <input autocomplete="off" type="number" name="duration"

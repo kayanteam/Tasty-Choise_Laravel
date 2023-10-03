@@ -75,7 +75,7 @@
                             <!--begin::Toolbar-->
                             <div class="d-flex justify-content-end" data-kt-user-table-toolbar="base">
                                 <a href="{{ route('subscription.create') }}" id="showmodal" type="button"
-                                    class="btn btn-dark">{{ __('dashboard.add_new_subscription') }}</a>
+                                    class="btn btn-dark">{{ ('اضافة باقة جديدة') }}</a>
                             </div>
                             <!--end::Toolbar-->
 
