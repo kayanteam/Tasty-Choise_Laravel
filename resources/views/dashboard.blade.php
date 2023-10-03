@@ -1,7 +1,7 @@
 @extends('layouts.main')
 
 @section('content')
-    
+
 
     <div id="kt_app_content" class="app-content flex-column-fluid">
 
@@ -43,9 +43,9 @@
 
                             <!--end::Svg Icon-->
 
-                            <div class="text-gray-100 fw-bold fs-2 mb-2 mt-5">{{ 0 }}</div>
+                            <div class="text-gray-100 fw-bold fs-2 mb-2 mt-5">{{ App\Models\Restaurant::count() }}</div>
 
-                            <div class="fw-semibold text-gray-100">الشركات</div>
+                            <div class="fw-semibold text-gray-100">المطاعم</div>
 
                         </div>
 
@@ -92,9 +92,9 @@
 
                             <!--end::Svg Icon-->
 
-                            <div class="text-white fw-bold fs-2 mb-2 mt-5">{{0 }}</div>
+                            <div class="text-white fw-bold fs-2 mb-2 mt-5">{{App\Models\User::count() }}</div>
 
-                            <div class="fw-semibold text-white">الأقسام</div>
+                            <div class="fw-semibold text-white">المستخدمين</div>
 
                         </div>
 
@@ -141,9 +141,9 @@
 
                             <!--end::Svg Icon-->
 
-                            <div class="text-white fw-bold fs-2 mb-2 mt-5">{{ 0 }}</div>
+                            <div class="text-white fw-bold fs-2 mb-2 mt-5">{{App\Models\Product::count() }}</div>
 
-                            <div class="fw-semibold text-white">الموظفين</div>
+                            <div class="fw-semibold text-white">المنتجات</div>
 
                         </div>
 
@@ -189,10 +189,10 @@
                             <!--end::Svg Icon-->
 
                             <div class="text-gray-100 fw-bold fs-2 mb-2 mt-5">
-                                {{ 0 }}
+                                {{App\Models\RestauarntSubscription::where('status','active')->count() }}
                             </div>
 
-                            <div class="fw-semibold text-white">الاستبيانات
+                            <div class="fw-semibold text-white">الاشتراكات
                             </div>
 
                         </div>
@@ -213,7 +213,7 @@
 
             </div>
 
-          
+
             <div class="row g-5 g-xl-8 py-5">
                 @if (session()->has('success'))
                     <div class="alert alert-success">
