@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\AdsController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\ConstantController;
 use App\Http\Controllers\Admin\MessageController;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\ProductController;
@@ -11,6 +12,7 @@ use App\Http\Controllers\Admin\ResturantSubscriptionController;
 use App\Http\Controllers\Admin\SubscriptionController;
 use App\Http\Controllers\Admin\TransactionController;
 use App\Http\Controllers\Admin\UsersController;
+use App\Http\Controllers\Api\Partner\AppController;
 use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
 
@@ -75,6 +77,9 @@ Route::prefix('admin')->middleware(['auth:admin'])->group(function () {
 
     Route::resource('order', OrderController::class);
     Route::post('order/status', [OrderController::class, 'updateStatus'])->name('order.status');
+
+    Route::get('constant', [ConstantController::class, 'index'])->name('constant.index');
+    Route::post('update', [ConstantController::class, 'update'])->name('constants.update');
 
 
 

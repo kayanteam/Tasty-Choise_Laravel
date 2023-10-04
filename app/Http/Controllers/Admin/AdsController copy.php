@@ -2,30 +2,22 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\DataTables\BoatTypeDataTables;
-use App\DataTables\CategoryDataTables;
-use App\DataTables\ProductDataTables;
-use App\DataTables\SubscriptionDataTables;
+use App\DataTables\AdsDataTables;
 use App\Http\Controllers\Controller;
-use App\Models\Boat_type;
-use App\Models\Category;
-use App\Models\Order;
-use App\Models\Product;
-use App\Models\ProductType;
-use App\Models\Restaurant;
-use App\Models\Subscription;
+use App\Models\Ads;
 use Illuminate\Http\Request;
 
-class ProductController extends Controller
+class ConstantController extends Controller
 {
-   /**
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(ProductDataTables $dataTable)
+    public function index(AdsDataTables $dataTable)
     {
-        return $dataTable->render('admin.product.index');
+        return $dataTable->render('admin.ads.index');
+
     }
 
     /**
@@ -35,11 +27,8 @@ class ProductController extends Controller
      */
     public function create()
     {
-        $product = new Product();
-        $product_type = ProductType::Active()->get();
-        $resturants = Restaurant::Active()->get();
-
-        return view('admin.product.create', compact('product' , 'product_type','resturants'));
+        $Ads = new Ads();
+        return view('admin.ads.create', compact('Ads'));
     }
 
     /**
@@ -50,16 +39,19 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-
         $data = $request->except('image_remove');
 
         if ($request->image) {
             $image_path = $request->file('image')->store('uploads', 'public');
             $data['image'] = $image_path;
         }
-        Product::create($data);
-        return redirect()->route('product.index');
+
+        Ads::create($data);
+        return redirect()->route('ads.index');
+
     }
+
+
 
     /**
      * Display the specified resource.
@@ -69,10 +61,7 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        $product = Product::find($id);
-        $orders = Order::where('product_id',$id)->get();
-
-        return view('admin.product.show', compact('product' ,'orders'));
+        //
     }
 
     /**
@@ -83,10 +72,8 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-        $product = Product::find($id);
-        $product_type = ProductType::Active()->get();
-         $resturants = Restaurant::Active()->get();
-        return view('admin.product.edit', compact('product' , 'product_type','resturants'));
+        $Ads = Ads::find($id);
+        return view('admin.ads.edit' ,compact('Ads'));
     }
 
     /**
@@ -98,15 +85,15 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $product = Product::find($id);
+        $Ads = Ads::find($id);
         $data = $request->except('image_remove');
-        if ($request->image) {
-            $image_path = $request->file('image')->store('uploads', 'public');
-            $data['image'] = $image_path;
-        }
+         if ($request->image) {
+             $image_path = $request->file('image')->store('uploads', 'public');
+             $data['image'] = $image_path;
+         }
 
-        $product->update($data);
-        return redirect()->route('product.index');
+         $Ads->update($data);
+        return redirect()->route('ads.index');
     }
 
     /**
@@ -117,15 +104,15 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        $product = Product::find($id);
-        $product->delete();
+        $Ads = Ads::find($id);
+        $Ads->delete();
         return response()->json(['status' => 'success', 'message' =>  __('dashboard.deleted_success')]);
-    }
+       }
 
     public function updateStatus(Request $request): \Illuminate\Http\JsonResponse
     {
         $id = $request->get('id');
-        $info = Product::find($id);
+        $info = Ads::find($id);
         return Controller::updateModelStatus($info);
     }
 }

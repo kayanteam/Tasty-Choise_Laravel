@@ -147,7 +147,7 @@
                                                                         <th scope="col">نوع المنتج</th>
 
                                                                     </tr>
-                                                                    
+
                                                                 </thead>
                                                                 <tbody>
                                                                     @foreach ($resturant->Product as $key =>$product)
@@ -161,7 +161,7 @@
                                                                             <td>{{ $product->price }}</td>
                                                                             <td>{{ $product->productType->name }}</td>
 
-                                                                            
+
                                                                         </tr>
                                                                     @endforeach
 
@@ -196,7 +196,9 @@
                                                                     <tr>
                                                                         <th scope="col">#</th>
                                                                         <th scope="col">'نوع الحركة' </th>
-                                                                      <th scope="col">'القيمة' </th>
+                                                                       <th scope="col">'القيمة' </th>
+                                                                       <th scope="col">'تاريخ الحركة' </th>
+
 
                                                                     </tr>
                                                                 </thead>
@@ -204,14 +206,16 @@
                                                                     @foreach ($resturant->Wallet->walletTransaction as $key =>$walTra)
                                                                         <tr>
                                                                             <th scope="row">{{ $key + 1 }}</th>
-                                                                            
+
                                                                             <td>{{ $walTra->type }}</td>
                                                                             <td>{{ $walTra->amount }}</td>
+                                                                            <td>{{ $walTra->created_at }}</td>
+
 
                                                                             {{-- <td>{{ $product->price }}</td>
                                                                             <td>{{ $product->productType->name }}</td> --}}
 
-                                                                            
+
                                                                         </tr>
                                                                     @endforeach
 
@@ -246,11 +250,11 @@
                                                                     @foreach ($subs as $key =>$Sub)
                                                                         <tr>
                                                                             <th scope="row">{{ $key + 1 }}</th>
-                                                                            
+
                                                                             <td>{{ $Sub->subscription->name }}</td>
                                                                             <td>{{ $Sub->created_at }}</td>
                                                                             <td>{{ Carbon\Carbon::parse($Sub->created_at)->addDays($Sub->subscription->duration) }}</td>
-                                                                         
+
                                                                         </tr>
                                                                     @endforeach
 
@@ -284,14 +288,14 @@
                                                                     @foreach ($resturant->Orders as $key =>$ReOrder)
                                                                         <tr>
                                                                             <th scope="row">{{ $key + 1 }}</th>
-                                                                            
+
                                                                             <td>{{ $ReOrder->id }}</td>
                                                                             <td>{{ $ReOrder->product->name }}</td>
 
                                                                             {{-- <td>{{ $product->price }}</td>
                                                                             <td>{{ $product->productType->name }}</td> --}}
 
-                                                                            
+
                                                                         </tr>
                                                                     @endforeach
 
