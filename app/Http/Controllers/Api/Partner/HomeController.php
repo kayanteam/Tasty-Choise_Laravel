@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\AdsResource;
 use App\Http\Resources\Api\Orders\RestaurantOrderCollection;
 use App\Http\Resources\Api\Orders\OrderItemResource;
+use App\Http\Resources\Api\Products\ProductResource;
 use App\Models\Ads;
 use App\Models\Driver;
 use App\Models\Order;
@@ -30,11 +31,11 @@ class HomeController extends Controller
         $rest = auth('restaurant')->user();
     
         $ads = Ads::latest()->limit(10)->get();
-        $myproducts  = Product::where('restaurant_id' ,  $rest->id )->latest()->get();
+        $myproducts  = Product::where('restaurant_id' , $rest->id)->latest()->get();
 
         $data = [
             'ads' => AdsResource::collection($ads) ,
-            'prodtucts' => $myproducts ,
+            'prodtucts' => ProductResource::collection($myproducts) ,
         ];
         return $this->SuccessApi($data); 
        

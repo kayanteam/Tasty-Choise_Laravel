@@ -56,18 +56,19 @@ class ProductController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request)
     {
         $request->validate([
+            'product_id' => 'required|exists:products,id',
             'name' => 'required|string|max:255',
             'price' => 'required|numeric',
             'image' => 'nullable',
             'product_type_id' => 'required|exists:product_types,id',
             'description' => 'required|string',
         ]);
-        $data = $request->all();
+        $data = $request->except('product_id');
         //store Image
-        Product::find($id)->update($data);
+        Product::find($request->product_id)->update($data);
         return $this->SuccessApi(null, 'تم تعديل المنتج بنجاح');
     }
 

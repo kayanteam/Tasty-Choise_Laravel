@@ -55,7 +55,6 @@ class AuthController extends Controller
             'phone' => [Rule::requiredIf($request->email == null), 'unique:users,phone', 'regex:/^([0-9\s\-\+\(\)]*)$/', 'min:8'],
             'email' => [Rule::requiredIf($request->phone == null), 'email', 'unique:users,email'],
             'password' => ['required', 'string', 'min:8'],
-            // 'name' => 'required|max:50',
         ]);
         $code = $this->generateCode();
         $user = User::create(([
@@ -65,10 +64,6 @@ class AuthController extends Controller
             'code' => $code,
             'fcm_token' => $request->fcm_token ?? '',
         ]));
-
-
-        // $this->SendVerificationCode($code, $user->phone);
-        $user->Wallet()->create(['userable_type' => User::class]);
 
         return Response()->Json([
             'status' => true,

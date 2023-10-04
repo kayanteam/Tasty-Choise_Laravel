@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\OrderController as ApiOrderController;
 use App\Http\Controllers\Api\Partner\AppController;
 use App\Http\Controllers\Api\Partner\HomeController;
 use App\Http\Controllers\Api\Partner\ProfileController;
@@ -10,6 +11,10 @@ use App\Http\Controllers\Api\Partner\ProductController;
 use App\Http\Controllers\Api\Partner\PullRequestController;
 use App\Http\Controllers\Api\Partner\SubscriptionController;
 use App\Http\Controllers\Api\Partner\WalletController;
+use App\Http\Controllers\Api\Users\AuthController as UsersAuthController;
+use App\Http\Controllers\Api\Users\HomeController as UsersHomeController;
+use App\Http\Controllers\Api\Users\NotificationController as UsersNotificationController;
+use App\Http\Controllers\Api\Users\ProfileController as UsersProfileController;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -44,6 +49,7 @@ Route::prefix('partners')->middleware(['auth:restaurant'])->group(function () {
     // Route::post('contact-us', [CommunicationController::class, 'ContactUs']);
     Route::apiResource('notifications', NotificationController::class);
     Route::apiResource('products', ProductController::class);
+    Route::post('update-product', [ProductController::class, 'update']);
 
    
     // Route::get('showCategories', [CategoryController::class, 'ShowCategories']);
@@ -60,6 +66,7 @@ Route::prefix('partners')->middleware(['auth:restaurant'])->group(function () {
 
     //Subscriptions
     Route::get('subscriptions', [SubscriptionController::class, 'index']);
+    Route::post('subscriptions', [SubscriptionController::class, 'store']);
 
     // Route::post('add-balance', [RequestMoneyController::class, 'StoreParnterTransaction']);
     Route::post('request-money', [PullRequestController::class, 'RequestMoney']);
@@ -84,6 +91,62 @@ Route::prefix('partners')->group(function () {
     //VerifyCode
     Route::post('verify-code', [AuthController::class, 'VerifyCode']);
     Route::post('/refresh_device_token', [AuthController::class, 'RefreshDeviceToken']);
+
+    Route::get('app', [AppController::class, 'App']);
+});
+
+
+
+
+
+Route::prefix('users')->middleware(['auth:user'])->group(function () {
+    Route::get('profile', [UsersProfileController::class, 'index']);
+    Route::post('update-profile', [UsersProfileController::class, 'store']);
+    Route::post('update-image', [UsersProfileController::class, 'updateImage']);
+    Route::post('delete-account', [UsersProfileController::class, 'destroyAccount']);
+
+    Route::get('home', [UsersHomeController::class, 'Home']);
+    Route::get('restaurants', [UsersHomeController::class, 'Restuarants']);
+    Route::get('restaurants/{id}/products', [UsersHomeController::class, 'RestuarantProducts']);
+    Route::get('products/{id}', [UsersHomeController::class, 'ShowProduct']);
+
+   
+    // Route::post('contact-us', [CommunicationController::class, 'ContactUs']);
+    Route::apiResource('notifications', UsersNotificationController::class);
+    Route::apiResource('products', ProductController::class);
+
+   
+    
+
+    // //Orders 
+    Route::get('showOrders', [ApiOrderController::class, 'ShowOrders']);
+    Route::post('make-order', [ApiOrderController::class, 'store']);
+    Route::get('showOrder/{id}', [ApiOrderController::class, 'ShowOrder']);
+    Route::post('updateOrder', [ApiOrderController::class, 'UpdateStatus']);
+    Route::get('common-quastions', [CommonQuastionsController::class, 'index']);
+
+    //Subscriptions
+
+
+
+    Route::post('settings', [AppController::class, 'Setting']);
+
+
+});
+
+
+Route::prefix('users')->group(function () {
+    Route::get('privacy-policy', [PagesController::class, 'getPrivacyPolicy']);
+    Route::post('login', [UsersAuthController::class, 'Login']);
+    Route::post('register', [UsersAuthController::class, 'Register']);
+    Route::post('forget-password', [UsersAuthController::class, 'ForgetPassword']);
+    Route::post('reset-password', [UsersAuthController::class, 'ResetPassword']);
+    Route::post('change-password', [UsersAuthController::class, 'ChangePassword']);
+    Route::post('resend-code', [UsersAuthController::class, 'resendCode']);
+    Route::post('social_login', [UsersAuthController::class, 'socialLogin']);
+    //VerifyCode
+    Route::post('verify-code', [UsersAuthController::class, 'VerifyCode']);
+    Route::post('/refresh_device_token', [UsersAuthController::class, 'RefreshDeviceToken']);
 
     Route::get('app', [AppController::class, 'App']);
 });
