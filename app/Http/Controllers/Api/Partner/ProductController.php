@@ -34,11 +34,12 @@ class ProductController extends Controller
             'restaurant_id' => auth('restaurant')->id(),
         ]);
         $data = $request->all();
-        if($request->hasFile('image'))
-        {
-            $data['image'] = $request->file('image')->store('products');
+
+        if ($request->image) {
+            $image_path = $request->file('image')->store('uploads', 'public');
+            $data['image'] = $image_path;
         }
-        //store Image
+      
         Product::create($data);
         return $this->SuccessApi(null, 'تم اضافة المنتج بنجاح');
 
@@ -67,6 +68,11 @@ class ProductController extends Controller
             'description' => 'required|string',
         ]);
         $data = $request->except('product_id');
+
+        if ($request->image) {
+            $image_path = $request->file('image')->store('uploads', 'public');
+            $data['image'] = $image_path;
+        }
         //store Image
         Product::find($request->product_id)->update($data);
         return $this->SuccessApi(null, 'تم تعديل المنتج بنجاح');

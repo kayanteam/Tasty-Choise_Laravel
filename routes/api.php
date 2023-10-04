@@ -73,7 +73,6 @@ Route::prefix('partners')->middleware(['auth:restaurant'])->group(function () {
 
     Route::get('wallet', [WalletController::class, 'index']);
 
-    Route::post('settings', [AppController::class, 'Setting']);
 
 
 });
@@ -91,6 +90,7 @@ Route::prefix('partners')->group(function () {
     //VerifyCode
     Route::post('verify-code', [AuthController::class, 'VerifyCode']);
     Route::post('/refresh_device_token', [AuthController::class, 'RefreshDeviceToken']);
+    Route::post('settings', [AppController::class, 'Setting']);
 
     Route::get('app', [AppController::class, 'App']);
 });
@@ -129,7 +129,6 @@ Route::prefix('users')->middleware(['auth:user'])->group(function () {
 
 
 
-    Route::post('settings', [AppController::class, 'Setting']);
 
 
 });
@@ -147,6 +146,7 @@ Route::prefix('users')->group(function () {
     //VerifyCode
     Route::post('verify-code', [UsersAuthController::class, 'VerifyCode']);
     Route::post('/refresh_device_token', [UsersAuthController::class, 'RefreshDeviceToken']);
+    Route::post('settings', [AppController::class, 'Setting']);
 
     Route::get('app', [AppController::class, 'App']);
 });
