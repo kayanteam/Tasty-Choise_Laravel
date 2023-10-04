@@ -10,7 +10,7 @@ use Illuminate\Notifications\Notifiable;
 
 class Restaurant extends Authenticatable
 {
-    use HasFactory , HasApiTokens , Notifiable;
+    use HasFactory ,  Notifiable;
     protected $guarded = [];
 
 
@@ -33,7 +33,7 @@ class Restaurant extends Authenticatable
     {
         return $this->where('status' , 1);
     }
-    
+
 
     public function Product()
     {

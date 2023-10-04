@@ -3,6 +3,16 @@
 
 
       <div class="d-flex my-3 ms-9">
+        <a href="{{route('order.show', $model->id)}}" class="btn btn-icon btn-active-light-primary w-30px h-30px me-3" data-bs-toggle="tooltip" data-kt-customer-payment-method="show" aria-label="Show" data-bs-original-title="Show" data-kt-initialized="1">
+            <!--begin::Svg Icon | path: icons/duotone/Design/Eye.svg-->
+            <span class="svg-icon svg-icon-3">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                    <path d="M10 12a2 2 0 100-4 2 2 0 000 4z" />
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M10 2c-4.968 0-8.8 3.25-9.797 8C1.2 12.75 5.032 16 10 16s8.8-3.25 9.797-8c-.997-4.75-4.83-8-9.797-8zm0 14c-3.866 0-7-2.523-7-6s3.134-6 7-6 7 2.523 7 6-3.134 6-7 6z" />
+                </svg>
+            </span>
+            <!--end::Svg Icon-->
+        </a>
           <!--begin::Edit-->
           <a href="{{ route('order.edit', $model->id) }}"
               class="btn btn-icon btn-active-light-primary w-30px h-30px me-3">

@@ -66,7 +66,9 @@ class OrderController extends Controller
      */
     public function show($id)
     {
-        //
+        $order = Order::find($id);
+
+        return view('admin.order.show', compact('order' ));
     }
 
     /**
