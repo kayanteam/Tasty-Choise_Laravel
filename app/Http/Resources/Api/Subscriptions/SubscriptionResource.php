@@ -16,7 +16,7 @@ class SubscriptionResource extends JsonResource
      */
     public function toArray($request)
     {
-        $Sub = RestauarntSubscription::where('resturant_id' , auth('restaurant')->id())->where('subscription_id' , $this->id)->first();
+        $Sub = RestauarntSubscription::where('restaurant_id' , auth('restaurant')->id())->where('subscription_id' , $this->id)->first();
         return [
             'id' => $this->id,
             'name'=> $this->name ,

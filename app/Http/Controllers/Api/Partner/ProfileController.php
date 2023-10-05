@@ -63,9 +63,6 @@ class ProfileController extends Controller
      
         $restaurant->update($data);
 
-
-
-
         //get token from header 
         $token = request()->header('Authorization');
 

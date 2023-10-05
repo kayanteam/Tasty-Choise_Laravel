@@ -22,9 +22,9 @@ class AuthServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        // Passport::tokensCan([
-        //     'user' => 'Client App',
-        //     'restaurant' => 'restaurant App',
-        // ]);
+        Passport::tokensCan([
+            'user' => 'Client App',
+            'restaurant' => 'restaurant App',
+        ]);
     }
 }

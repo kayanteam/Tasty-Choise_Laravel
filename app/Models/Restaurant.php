@@ -10,7 +10,7 @@ use Illuminate\Notifications\Notifiable;
 
 class Restaurant extends Authenticatable
 {
-    use HasFactory ,  Notifiable;
+    use HasApiTokens  , HasFactory ,  Notifiable;
     protected $guarded = [];
 
 
