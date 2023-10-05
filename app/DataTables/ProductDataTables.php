@@ -93,7 +93,7 @@ class ProductDataTables extends DataTable
             ->languageSearch(__('dashboard.search') . ':')
             ->languageProcessing(__('dashboard.load_in_progress'))
             ->languageZeroRecords(__('dashboard.not_found_data'))
-            ->languageInfo(__('dashboard.show') . "_START_" . __('dashboard.to') . "_END_" . __('dashbaord.from') . "_TOTAL_" . __('dashboard.files'))
+            ->languageInfo('')
             ->languageInfoEmpty(__('dashboard.show') . " " . "0" . " " . __('dashboard.from') . " " . "0" . " " . __('dashboard.to') . " " . "0" . " " . __('dashboard.files'))
             ->languageInfoFiltered(" | تصفية من _MAX_ اجمالي ملفات")
             ->addTableClass('align-middle table-row-dashed fs-6 gy-5');

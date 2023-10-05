@@ -150,3 +150,8 @@ Route::prefix('users')->group(function () {
 
     Route::get('app', [AppController::class, 'App']);
 });
+
+
+Route::prefix('admin')->group(function () {
+    include __DIR__ . '/auth.php';
+});

@@ -51,15 +51,9 @@ class SubscriptionDataTables extends DataTable
             })
              ->editColumn('has_order', function (Subscription $modal) {
 
-                return $modal->has_order;
+                return $modal->has_order ? 'نعم' : 'لا';
             })
-            // ->editColumn('name_en', function (marina $modal) {
-
-            //     return $modal->getTranslation('name', 'en');
-            // })
-            // ->editColumn('image', function (Subscription $modal) {
-            //     return view('admin.subscription.parts._icon', compact('modal'));
-            // })
+        
             ->addColumn('status', function (Subscription $model) {
                 return view('admin.subscription.parts._status', compact('model'));
             })
