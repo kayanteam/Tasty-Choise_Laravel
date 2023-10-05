@@ -90,7 +90,7 @@
                                     <input autocomplete="off" type="name" name="name"
                                         class="form-control form-control-lg form-control-solid mb-3 mb-lg-0 name"
                                         placeholder="{{ __('dashboard.resturant_name') }}"
-                                        value="{{ old($Restaurant->name) }}">
+                                        value="{{ old(name ,$resturant->name) }}">
                                     <div class="fv-plugins-message-container invalid-feedback"></div>
                                     @error('first_name')
                                         <div class="fv-plugins-message-container invalid-feedback">{{ $message }}
@@ -131,7 +131,7 @@
                                 <div class="col-lg-8">
                                     <input autocomplete="off" type="email" name="email"
                                         class="form-control form-control-lg form-control-solid mb-3 mb-lg-0 email"
-                                        placeholder="email" value="{{ old('email', $Restaurant->email) }}">
+                                        placeholder="email" value="{{ old('email', $resturant->email) }}">
                                     <div class="fv-plugins-message-container invalid-feedback"></div>
                                     @error('email')
                                         <div class="fv-plugins-message-container invalid-feedback">{{ $message }}
@@ -148,7 +148,7 @@
                                 <div class="col-lg-8">
                                     <input autocomplete="off" type="phone" name="phone"
                                         class="form-control form-control-lg form-control-solid mb-3 mb-lg-0 phone"
-                                        placeholder="phone" value="{{ old('phone', $Restaurant->phone) }}">
+                                        placeholder="phone" value="{{ old('phone', $resturant->phone) }}">
                                     <div class="fv-plugins-message-container invalid-feedback"></div>
                                     @error('phone')
                                         <div class="fv-plugins-message-container invalid-feedback">{{ $message }}
@@ -166,7 +166,7 @@
                         </label>
                         <div class="col-lg-4 d-flex align-items-center">
                             <div class="form-check form-check-solid form-switch fv-row">
-                                <input type="hidden" name="status" value="{{ $Restaurant->status }}">
+                                <input type="hidden" name="status" value="{{ $resturant->status }}">
                                 <input class="form-check-input w-45px h-30px" type="checkbox" id="status"
                                     name="status" value="1" checked="">
                                 <label class="form-check-label" for="allowmarketing"></label>

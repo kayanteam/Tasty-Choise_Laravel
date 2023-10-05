@@ -36,11 +36,11 @@ class ResturantSubscriptionDataTables extends DataTable
             ->addIndexColumn()
             ->editColumn('subscription_id', function (RestauarntSubscription $modal) {
 
-                return $modal->subscription_id;
+                return $modal->subscription->name;
             })
             ->editColumn('restaurant_id', function (RestauarntSubscription $modal) {
 
-                return $modal->restaurant_id;
+                return $modal->resturant->name;
             })
             ->editColumn('created_at', function (RestauarntSubscription $modal) {
 

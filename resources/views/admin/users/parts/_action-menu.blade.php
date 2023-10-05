@@ -29,7 +29,7 @@
         <!--end::Delete-->
 
         <!--begin::Edit Services-->
-        <a href="{{ route('users.edit', $model->id)}}" title="Edit" class="btn btn-icon btn-active-light-primary w-30px h-30px me-3">
+        {{-- <a href="{{ route('users.edit', $model->id)}}" title="Edit" class="btn btn-icon btn-active-light-primary w-30px h-30px me-3">
             <!--begin::Svg Icon | path: icons/duotune/general/gen027.svg-->
             <span class="svg-icon svg-icon-3">
                 <!--begin::Svg Icon | path: assets/media/icons/duotune/coding/cod001.svg-->
@@ -40,7 +40,7 @@
                 <!--end::Svg Icon-->
             </span>
             <!--end::Svg Icon-->
-        </a>
+        </a> --}}
         <!--end::Edit Services-->
 
         <!--end::More-->
