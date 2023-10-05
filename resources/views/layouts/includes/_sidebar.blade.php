@@ -520,7 +520,7 @@
                                 </span>
                                 <!--end::Svg Icon-->
                             </span>
-                            <span class="menu-title">{{ __('dashboard.constant') }}</span>
+                            <span class="menu-title">{{ 'الثوابت'}}</span>
                             <span class="menu-arrow"></span>
                         </span>
                         <!--end:Menu link-->
@@ -535,7 +535,7 @@
                                     <span class="menu-bullet">
                                         <span class="bullet bullet-dot"></span>
                                     </span>
-                                    <span class="menu-title">{{ __('dashboard.constant') }}</span>
+                                    <span class="menu-title">{{ 'الثوابت' }}</span>
                                 </a>
                             </div>
                             <!--end:Menu item-->

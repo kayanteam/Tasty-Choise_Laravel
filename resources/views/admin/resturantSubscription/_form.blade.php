@@ -81,35 +81,15 @@
                             <div class="col-lg-6">
                                 <div class="form-group row">
                                     <label class="col-lg-4 col-form-label required fw-bold fs-6">
-                                        {{ __('dashboard.resturantSubscription') }}
+                                        {{ 'اسم الباقة' }}
                                     </label>
                                     <div class="col-lg-8">
                                         <input autocomplete="off" type="text" name="name"
                                             class="form-control form-control-lg form-control-solid mb-3 mb-lg-0 name"
                                             placeholder="name"
-                                            value="{{ old('name', $resturantSubscription->name) }}">
+                                            value="{{ $resturantSubscription->subscription->name }}">
                                         <div class="fv-plugins-message-container invalid-feedback"></div>
                                         @error('name')
-                                            <div class="fv-plugins-message-container invalid-feedback">{{ $message }}
-                                            </div>
-                                        @enderror
-                                    </div>
-                                </div>
-                            </div>
-                    </div>
-                    <div class="row">
-                            <div class="col-lg-6">
-                                <div class="form-group row">
-                                    <label class="col-lg-4 col-form-label required fw-bold fs-6">
-                                        {{ __('dashboard.resturantSubscription') }}
-                                    </label>
-                                    <div class="col-lg-8">
-                                        <input autocomplete="off" type="number" name="price"
-                                            class="form-control form-control-lg form-control-solid mb-3 mb-lg-0 price"
-                                            placeholder="price"
-                                            value="{{ old('price' , $resturantSubscription->price) }}">
-                                        <div class="fv-plugins-message-container invalid-feedback"></div>
-                                        @error('price')
                                             <div class="fv-plugins-message-container invalid-feedback">{{ $message }}
                                             </div>
                                         @enderror
@@ -122,15 +102,56 @@
                         <div class="col-lg-6">
                             <div class="form-group row">
                                 <label class="col-lg-4 col-form-label required fw-bold fs-6">
-                                    {{ __('dashboard.resturantSubscription') }}
+                                    {{ 'اسم المطعم' }}
                                 </label>
                                 <div class="col-lg-8">
-                                    <input autocomplete="off" type="text" name="description"
-                                        class="form-control form-control-lg form-control-solid mb-3 mb-lg-0 description"
-                                        placeholder="description"
-                                        value="{{ old('description' , $resturantSubscription->description) }}">
+                                    <input autocomplete="off" type="text" name="name"
+                                        class="form-control form-control-lg form-control-solid mb-3 mb-lg-0 name"
+                                        placeholder="name"
+                                        value="{{ $resturantSubscription->resturant->name }}">
                                     <div class="fv-plugins-message-container invalid-feedback"></div>
-                                    @error('description')
+                                    @error('name')
+                                        <div class="fv-plugins-message-container invalid-feedback">{{ $message }}
+                                        </div>
+                                    @enderror
+                                </div>
+                            </div>
+                        </div>
+                </div>
+                    <div class="row">
+                            <div class="col-lg-6">
+                                <div class="form-group row">
+                                    <label class="col-lg-4 col-form-label required fw-bold fs-6">
+                                        {{ 'تاريخ الاشتراك ' }}
+                                    </label>
+                                    <div class="col-lg-8">
+                                        <input autocomplete="off" type="timestamp" name="created_at"
+                                            class="form-control form-control-lg form-control-solid mb-3 mb-lg-0 price"
+                                            placeholder="created_at"
+                                            value="{{ $resturantSubscription->created_at }}">
+                                        <div class="fv-plugins-message-container invalid-feedback"></div>
+                                        @error('created_at')
+                                            <div class="fv-plugins-message-container invalid-feedback">{{ $message }}
+                                            </div>
+                                        @enderror
+                                    </div>
+                                </div>
+                            </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="form-group row">
+                                <label class="col-lg-4 col-form-label required fw-bold fs-6">
+                                    {{ 'تاريخ الانتهاء ' }}
+                                </label>
+                                <div class="col-lg-8">
+                                    <input autocomplete="off" type="timestamp" name="expired_at"
+                                        class="form-control form-control-lg form-control-solid mb-3 mb-lg-0 price"
+                                        placeholder="expired_at"
+                                        value="{{ $resturantSubscription->expired_at }}">
+                                    <div class="fv-plugins-message-container invalid-feedback"></div>
+                                    @error('expired_at')
                                         <div class="fv-plugins-message-container invalid-feedback">{{ $message }}
                                         </div>
                                     @enderror
@@ -139,41 +160,6 @@
                         </div>
                 </div>
 
-                <div class="row fv-plugins-icon-container">
-                    <label class="col-lg-2 col-form-label required fw-bold fs-6">{{ __('dashboard.has_order') }}
-                    </label>
-                    <div class="col-lg-4 d-flex align-items-center">
-                        <div class="form-check form-check-solid form-check-custom form-switch">
-
-                            <input type="hidden" name="has_order" value="0">
-                            <input data-id="{{ $resturantSubscription->id }}" class="form-check-input w-45px h-30px sts-fld"
-                                type="checkbox" id="has_order_{{ $resturantSubscription->id }}" name="has_order" value="1"
-                                {{ old('has_order', $resturantSubscription->has_order ?? '') == 1 ? 'checked' : '' }}>
-
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-lg-6">
-                        <div class="form-group row">
-                            <label class="col-lg-4 col-form-label required fw-bold fs-6">
-                                {{ __('dashboard.resturantSubscription') }}
-                            </label>
-                            <div class="col-lg-8">
-                                <input autocomplete="off" type="number" name="duration"
-                                    class="form-control form-control-lg form-control-solid mb-3 mb-lg-0 duration"
-                                    placeholder="duration"
-                                    value="{{ old('duration' , $resturantSubscription->duration) }}">
-                                <div class="fv-plugins-message-container invalid-feedback"></div>
-                                @error('duration')
-                                    <div class="fv-plugins-message-container invalid-feedback">{{ $message }}
-                                    </div>
-                                @enderror
-                            </div>
-                        </div>
-                    </div>
-            </div>
 
                     <!--end::Row-->
                     <!--begin::Row-->

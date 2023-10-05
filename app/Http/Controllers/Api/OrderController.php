@@ -82,7 +82,7 @@ class OrderController extends Controller
         $notification = $opNotificationOpts[Order::NOTIFICATION_TYPE[$request->status]];
 
         //send to rest
-        $restaurants = Restaurant::where('id', $order->product->resturant_id)->get();
+        $restaurants = Restaurant::where('id', $order->product->restaurant_id)->get();
         Notification::send($restaurants, new OrderNotify($order, $notification));
 
         // $this->SendNotification($users,$notification['title'],$notification['details'] , $order->id, Order::NOTIFICATION_TYPE[$request->status] );

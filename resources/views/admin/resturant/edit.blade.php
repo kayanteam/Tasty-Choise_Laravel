@@ -59,7 +59,7 @@
 
                     @include('layouts.sessions-messages')
                     <form id="kt_ecommerce_add_appconfig_form" class="form d-flex flex-column flex-lg-row"
-                        action="{{ route('resturant.update', $Restaurant->id) }}" method="POST"
+                        action="{{ route('resturant.update', $resturant->id) }}" method="POST"
                         enctype="multipart/form-data">
                         @csrf
                         @method('PUT')

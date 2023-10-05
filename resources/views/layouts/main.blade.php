@@ -11,14 +11,14 @@ Like: www.facebook.com/keenthemes
 License: For each use you must have a valid license purchased only from above link in order to legally use the theme for your project.
 -->
 <html lang="en" dir="rtl" direction="rtl" style="direction:rtl;">
-	
+
 
 	@include('layouts.includes._head');
 	@yield('styles')
 	<!--end::Head-->
 	<!--begin::Body-->
 	<body id="kt_app_body" data-kt-app-layout="dark-sidebar" data-kt-app-header-fixed="true" data-kt-app-sidebar-enabled="true" data-kt-app-sidebar-fixed="true" data-kt-app-sidebar-hoverable="true" data-kt-app-sidebar-push-header="true" data-kt-app-sidebar-push-toolbar="true" data-kt-app-sidebar-push-footer="true" data-kt-app-toolbar-enabled="true" class="app-default">
-	
+
 		<!--begin::App-->
 		<div class="d-flex flex-column flex-root app-root" id="kt_app_root">
 			<!--begin::Page-->
@@ -49,7 +49,7 @@ License: For each use you must have a valid license purchased only from above li
 						</div>
 						<!--end::Mobile logo-->
 
-						
+
 						<!--begin::Header wrapper-->
 						<div class="d-flex align-items-stretch justify-content-between flex-lg-grow-1" id="kt_app_header_wrapper">
 								<!--begin::Header menu toggle-->
@@ -57,21 +57,21 @@ License: For each use you must have a valid license purchased only from above li
 									{{-- <!--begin:Menu item-->
 									<div  data-kt-menu-placement="bottom-start" class="menu-item menu-here-bg menu-lg-down-accordion me-0 me-lg-2">
 										<a target="_blank" href="{{url('/')}}" class="btn btn-light-success">الموقع الالكتروني</a>
-										
+
 									</div> --}}
 									<!--end:Menu item-->
 									<!--begin:Menu item-->
-									
-							
+
+
 								</div>
 								<!--end::Header menu toggle-->
 							<!--begin::Navbar-->
 							<div class="app-navbar flex-shrink-0">
-							
-							
-							
-							
-							
+
+
+
+
+
 								<!--begin::Theme mode-->
 								<div class="app-navbar-item ms-1 ms-lg-3">
 									<!--begin::Menu toggle-->
@@ -148,7 +148,7 @@ License: For each use you must have a valid license purchased only from above li
 											</a>
 										</div>
 										<!--end::Menu item-->
-										
+
 									</div>
 									<!--end::Menu-->
 								</div>
@@ -184,7 +184,7 @@ License: For each use you must have a valid license purchased only from above li
 										<!--end::Menu separator-->
 										<div class="menu-item px-5">
 											<a href="{{route('profile.index')}}" class="menu-link px-5" >البروفايل</a>
-										
+
 										</div>
 										<!--begin::Menu item-->
 										<div class="menu-item px-5">
@@ -199,7 +199,7 @@ License: For each use you must have a valid license purchased only from above li
 									<!--end::Menu wrapper-->
 								</div>
 								<!--end::User menu-->
-								
+
 							</div>
 							<!--end::Navbar-->
 						</div>
@@ -220,8 +220,8 @@ License: For each use you must have a valid license purchased only from above li
 			<!--end::Page-->
 		</div>
 		<!--end::App-->
-	
-		
+
+
 		<!--begin::Scrolltop-->
 		<div id="kt_scrolltop" class="scrolltop" data-kt-scrolltop="true">
 			<!--begin::Svg Icon | path: icons/duotune/arrows/arr066.svg-->
@@ -234,7 +234,7 @@ License: For each use you must have a valid license purchased only from above li
 			<!--end::Svg Icon-->
 		</div>
 		<!--end::Scrolltop-->
-		
+
 		<!--begin::Javascript-->
 		<script>var hostUrl = "assets/";</script>
 		<!--begin::Global Javascript Bundle(mandatory for all pages)-->
@@ -250,7 +250,7 @@ License: For each use you must have a valid license purchased only from above li
 		<script src="https://cdn.amcharts.com/lib/5/radar.js"></script>
 		<script src="https://cdn.amcharts.com/lib/5/themes/Animated.js"></script>
 		<script src="{{asset('assets/plugins/custom/datatables/datatables.bundle.js')}}"></script>
-       
+
 		<!--end::Vendors Javascript-->
 		@yield('scripts')
 		<!--end::Javascript-->
@@ -258,7 +258,7 @@ License: For each use you must have a valid license purchased only from above li
 		<script>
 			// Select all input elements with type "date" or "datetime-local"
 			const inputs = document.querySelectorAll('input[type="date"], input[type="datetime-local"]');
-	
+
 			// Set the "required" attribute on each selected input element
 			inputs.forEach(input => {
 				input.setAttribite('lang' , 'en');

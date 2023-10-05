@@ -75,7 +75,7 @@ class ResturantSubscriptionController extends Controller
      */
     public function edit($id)
     {
-        $resturantSubscription = RestauarntSubscription::find($id);
+        $resturantSubscription = RestauarntSubscription::with(['resturant','subscription'])->find($id);
         return view('admin.resturantSubscription.edit', compact('resturantSubscription'));
     }
 

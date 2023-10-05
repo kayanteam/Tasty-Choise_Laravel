@@ -10,7 +10,7 @@
                 <div class="page-title d-flex flex-column justify-content-center flex-wrap me-3">
                     <!--begin::Title-->
                     <h1 class="page-heading d-flex text-dark fw-bold fs-3 flex-column justify-content-center my-0">
-                        {{ __('dashboard.subscription') }}
+                        {{ 'الباقات'}}
                     </h1>
                     <!--end::Title-->
                     <!--begin::Breadcrumb-->
@@ -27,7 +27,7 @@
                         </li>
                         <!--end::Item-->
                         <!--begin::Item-->
-                        <li class="breadcrumb-item text-muted">{{ __('dashboard.subscription') }}</li>
+                        <li class="breadcrumb-item text-muted">{{ 'الباقات'}}</li>
                         <!--end::Item-->
                     </ul>
                     <!--end::Breadcrumb-->

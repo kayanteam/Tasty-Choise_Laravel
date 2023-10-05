@@ -85,13 +85,13 @@
                             <div class="col-lg-6">
                                 <div class="form-group row">
                                     <label class="col-lg-4 col-form-label required fw-bold fs-6">
-                                        {{__('dashboard.name') }}
+                                        {{'الاسم' }}
                                     </label>
                                     <div class="col-lg-8">
                                         <input autocomplete="off" type="text" name="name"
                                             class="form-control form-control-lg form-control-solid mb-3 mb-lg-0 name"
-                                            placeholder="name"
-                                            value="{{ old('name.') }}">
+                                            placeholder="الاسم"
+                                            value="{{ old(name ,$User->name) }}">
                                         <div class="fv-plugins-message-container invalid-feedback"></div>
                                         @error('name')
                                             <div class="fv-plugins-message-container invalid-feedback">{{ $message }}
@@ -113,13 +113,13 @@
                         <div class="col-lg-6">
                             <div class="form-group row">
                                 <label class="col-lg-4 col-form-label required fw-bold fs-6">
-                                    {{__('dashboard.email')}}
+                                    {{'البريدالالكتروني'}}
                                 </label>
                                 <div class="col-lg-8">
                                     <input autocomplete="off" type="email" name="email"
                                         class="form-control form-control-lg form-control-solid mb-3 mb-lg-0 email"
-                                        placeholder="email"
-                                        value="email">
+                                        placeholder="البريد الالكتروني"
+                                        value="{{ old(name ,$User->email) }}">
                                     <div class="fv-plugins-message-container invalid-feedback"></div>
                                     @error('email')
                                         <div class="fv-plugins-message-container invalid-feedback">{{ $message }}</div>
@@ -130,13 +130,13 @@
                         <div class="col-lg-6">
                             <div class="form-group row">
                                 <label class="col-lg-4 col-form-label required fw-bold fs-6">
-                                 {{-- {{__('dashboard.phone')}} --}}
+                                 {{'رقم الهاتف'}}
                                 </label>
                                 <div class="col-lg-8">
                                     <input autocomplete="off" type="phone" name="phone"
-                                        class="form-control form-control-lg form-control-solid mb-3 mb-lg-0 email"
-                                        placeholder="phone"
-                                        value="phone">
+                                        class="form-control form-control-lg form-control-solid mb-3 mb-lg-0 phone"
+                                        placeholder="رقم الهاتف"
+                                        value="{{ old(name ,$User->phone) }}">
                                     <div class="fv-plugins-message-container invalid-feedback"></div>
                                     @error('phone')
                                         <div class="fv-plugins-message-container invalid-feedback">{{ $message }}</div>
